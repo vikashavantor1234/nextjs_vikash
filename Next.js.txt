@@ -1,0 +1,4791 @@
+				  Next.js
+.............................................................................................
+
+Software Req:
+
+1.Node.js
+2.VSCODE
+
+Pre Knowledge:
+
+1.JavaScript
+2.React fundamentals
+
+What you are going to learn?
+
+1.Next.js UI development
+2.REST api development
+3.Database Programming Using Prisma ORM Framework
+4.GraphQL with Apollo Framework
+5.Connecting Next.js with Apollo Framework
+............................................................................................
+			Next js 
+....................................................................................
+What is Next?
+	 Next is a flexible React framework that gives you building blocks to create fast "web applications".
+
+What is React?
+         React is JavaScript lib to build "Single Page Web applications"/SPA 
+
+What is web app?
+
+  Type of distributed app, deployed at server , accessed over network(internet) vi various network protocols like http,  tcp, smtp...
+  
+  Web apps works based on request and response model.
+  Web apps are hosted on server called web server.
+
+Web server receives request , runs a program, that program returns response to the client.
+
+Response would be document.
+=>HTML
+
+other responses types
+XML,JSON, Documents, images, videos.........
+
+What is web and why it was created?
+
+  Tim Berners-Lee, a British scientist, invented the World Wide Web (WWW) in 1989, while working at CERN. The web was originally conceived and developed to meet the demand for automated information-sharing between scientists in universities and institutes around the world.
+
+The first Web browser is line mode web browser, launched in 1992.
+The first web server is NeXT computer
+The first web page , launched http://info.cern.ch/hypertext/WWW/TheProject.html
+
+
+Technology stack:
+................
+1.HTML
+2.Webserver - Next Computer
+3.LineMode Web Browser
+4.HTTP protocol.
+.......................................................................................................................................................
+
+Types of Web application:
+
+1.Static web applications - 1989 to 1995
+
+    Hard coded html pages, Prepared html pages kept at server, the web server will send those html pages to clients - browsers
+
+Do you think Static web applications still exits?
+  Yes!, but we don't prepare the html pages by hand.. rather we ask the server to prepare..
+
+
+2.Dynamic Content generation application(1996 to till date)
+
+  After 1995, many people thought that how we can use web for biz information system
+
+ How to share biz information via internet?
+   Generally biz data is stored in databases , how to embed database data into html pages.
+
+ 1.web server need to talk to database
+ 2.web server need to prepare html pages based on database records
+ 3.Those information must be transported to web clients.
+
+
+Web server core design to get client request and send html response to the client.
+
+Along with web server, something was introduced called "Programming language runtime"
+
+Tech stacks:
+
+1.CGI With C language and Perl script.
+2.Java Servlets and JSP
+3.Active Server pages - ASP
+4.PHP
+
+3.Web services-1998 to till date
+
+ Rise of ECommerce, using internet and web how to exchange data between two biz organizations.
+ The existing html technology was not suitable to send and receive data because html is just   user interface document language.
+
+ We need , data to be exchanged, that's where new data model was created called 'XML'
+xml based web apps called web services.
+
+SOAP protocol was created to transfer XML based documents "SOAP based webservices"
+
+After 2005 SOAP based web services, started failing due to mobile computing.
+
+New Web services  were designed called "RestFull Web services"
+
+Restfull web services were used to build any type of data formats like json,xml,pdf,html etc...
+
+4.Client side web apps called "Single Page Web Apps"(2007 to till date)
+
+Single page web apps are built using JavaScript at client side where as server side web services(REST apis) are used.
+
+SPA Tech stack:
+HTML 5,CSS 3, JavaScript.
+
+Frameworks build based on SPA
+
+1.Angular js |Angular
+2.react js
+3.vue js
+
+........................................................................................................................................................
+						React as SPA lib
+........................................................................................................................................................
+
+React.js was created by Facebook , in order to build SPA applications for browsers.
+
+Advantages of SPA:
+
+1.Pages are created  at client side, so server load is completely removed
+2.SPA reduces the lot of physical pages after deployment.
+3.Clear separations of concerns.
+
+Drawbacks of SPA:
+...........................
+
+Pure client SPAs are problematic when the app is sensitive to SEO and 
+Time-to concept ,This is because the browser will receive a large empty HTML page and has to wait until the JavaScript is loaded before rendering any thing.
+
+To solve SEO Problems, new Technology was created called "SSR" - Server Side Rendering
+
+..................................................................................
+			Server side Rendering
+...................................................................................
+
+I need SEO but at the same time, i want to use SPA as well.
+ 
+We provide first class api to "render"  an SPA app into HTML strings on the server.
+
+
+This allows server to send back already rendered HTML, allowing end users to see the content immediately while the JavaScript is being downloaded.
+
+Hydration:
+  This process is called "hydration", the app is compiled at server side and sent to the client which will be  interactive.
+
+....................................................................................................................................................			           				Rendering Types
+.....................................................................................................................................................
+
+What is Rendering?
+   Render means preparation, HTML Page preparation...
+
+
+Rendering Types:
+1.CSR- Client side Rendering.
+   HTML Pages are prepared at client side - Pure SPA Applications
+2.SSR  -Server Side rendering
+   HTML Pages are prepared at server side - Dynamic Content Generation applications.
+
+Based on these rendering type, we can classify other rendering
+
+1.Universal rendering /Hybrid Rendering
+  Server + Client side , combing both rendering 
+
+2.Full SSR and Partial SSR
+    Partial SSR is nothing but only "index.html" is compiled at server , rest of the application is rendered at client side.
+   Full SSR is nothing but "index.html" and other pages are compiled at server....
+		
+.....................................................................................
+		      When Rendering can happen
+ 		    (when html pages are prepared)
+....................................................................................
+1.Request time
+2.Build time
+
+1.Request time :
+ When user types url 
+
+  http://www.example.com/product--------------->Server Receives Request----Prepares Page--send   that page to client.
+ Technologies : jsp,asp,php
+
+2.Build time
+    Build is nothing but, preparing app for production.. before hosting we have to prepare the   app
+  During build phase, we can prepare html pages/render html pages 
+
+
+SSG -  Static Site Generations:
+...............................
+
+Building web sites/apps during build phase is called SSG.
+
+Why SSG?
+  Super fast page access
+
+Based On SSG , There is specification is available "JAM Stack"
+
+Data changes rapidly , we need to enable request time page preparation.
+.....................................................................................
+			    SSR (request time) + SSG (build time)
+
+During build process, we have to enable SSG, during runtime not for all pages we need to enable SSR (Request Time page Preparation)
+
+....................................................
+			ISR - Incremental Static Rendering
+.....................................................................................
+
+SSG - Build time or ahead of time
+SSR - Request time
+
+ISR = SSG + SSR - Build time + request time 
+.....................................................................................
+				What is Next.js?
+
+Next js is a framework that helps to build web apps of all types
+  
+ you can build Full SSR apps..
+ you can build SSR With Request time
+ you can build SSG with Build time -  JAM Stacks
+ you can build SSR with CSR  - Server + SPA - Hybrid rendering
+ you can build rest apis also - Web services
+
+         "You cant build pure SPA apps like react with redux"
+
+Using Next you can build 
+     Pure server side apps with database access, other external api access.....
+
+.....................................................................................
+	               Next js UI layer - Next JS APP architecture
+.....................................................................................
+Next js uses "react core features" to build UI layer...
+
+React core features:
+1.React component driven
+2.React uses data mutation techniques like props and state
+3.React uses event listeners for interactions
+4.React hooks
+
+Next.js tech stack:
+
+1.React as ui layer
+2.Next does not recommend to use "redux"
+3.Next uses api layer- rest api development
+4.Next can talk to any database via orm frameworks...
+
+.....................................................................................
+			Next js framework and Runtime Architecture
+.....................................................................................
+
+Next js uses "Rust based build system" where as react uses web pack build ....
+
+What is Rust?
+ It is programming language, used to build Nestjs apps. Next core engine is written in Rust only.
+
+Next.js Compiler:
+..................
+ Next js Compiler is written using RUST Using SWC (Speedy Web Compiler).
+https://swc.rs/docs/getting-started
+
+SWC allows next js to transform and minify the js code for production. This replaces babel.
+
+SWC is 20x faster than Babel, it is embedded inside next js
+
+Turbo pack:
+ Turbopack is an incremental bundler optimized for JavaScript and TypeScript, written in Rust, and built into Next.js. Turbopack can be used in Next.js in both the pages and app directories for faster local development
+....................................................................................
+		NEXT JS Getting Started
+.....................................................................................
+
+How to install next js and how to create app?
+
+System Req:
+
+1.Node.js 18.18 or later
+2.OS - any os
+3.vs code.
+
+Installing/Create next app:
+..........................
+
+There are two ways :
+
+1.automatic way
+
+
+   We recommend starting a new Next.js app using create-next-app, which sets up everything automatically for you. To create a project, run:
+
+npx create-next-app@latest
+
+2.manual way
+
+ Just create folder and app structure your self and install packages
+
+ To manually create a new Next.js app, install the required packages:
+ npm install next@latest react@latest react-dom@latest
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... hello-app
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\hello-app.
+
+.............................................................................................
+			        Exploring Project Structure
+..............................................................................................
+
+package.json
+{
+  "name": "hello-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.1.6"
+  }
+}
+
+next.config.mjs
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+export default nextConfig;
+
+Common js :
+
+src/greet.js
+
+exports.hello = 'hello'
+
+
+src/index.js
+const res = require('./greet')
+
+console.log(res.hello)
+
+here "require" and exports are commonjs keywords, which is supported by by default in node.js
+
+E6 modules:
+ export,export default,import - keywords
+
+can we use these keywords inside node?
+
+Solution:
+1.you have to convert es6 module code into commonjs , so that node can understand
+
+2.you have to configure package.json 
+   "type:module"
+3.you have to save file with "fileName.mjs" extension.
+
+
+eg:
+{
+  "name": "mynodeapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type":"module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
+src/greet.js
+
+// exports.hello = 'hello'
+
+export const hello = 'hello'
+
+src/index.js
+// const res = require('./greet')
+
+// console.log(res.hello)
+import { hello } from "./greet.js";
+
+console.log(hello)
+
+..................................................................
+You can use .mjs extension to identify the file is es 6 module.
+
+src/greet.mjs
+
+export const hello = 'hello'
+
+
+src/index.js
+import { hello } from "./greet.mjs";
+
+console.log(hello)
+..............................................................................................
+
+Compiler Config:
+............................
+jsconfig.json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}	
+.............................................................................................
+Folders:
+
+public
+ Stores static assets such as images,fonts,documents
+ public dir are accessed inside code using the base URL "/"
+
+src:
+  Root source code folder
+
+src/app:
+   It is root folder where all source code of the next will go.
+
+This is where all application code will go..
+
+layout.js
+page.js
+global.css
+page.module.css
+
+.....................................................................................
+How to run next app?
+
+dev, build and prod
+
+dev mode:
+
+>npm run dev
+
+
+............................................................................................................................................................
+.........................................................................................................................................................
+		               Next.js Application Architecture
+........................................................................................................................................................
+               Next.js app is server side app, so for each web page ,the html page is created.
+		          "Next App is conventional over Configuration based"
+
+conventional over configuration is a software design principle that reduces the need for explicit configuration by following sensible defaults.
+file names and folder names are standard based.
+filenames are predefined...like page.js , layout.js
+
+.....................................................................................
+			 React core features inside next js
+.....................................................................................
+1.Component:
+  In react every thing is component, in next also the component driven arch is followed.
+
+2.Props
+    In react data is passed to the component via props.
+    Components are created in a configurable way..
+
+Types of Props:
+
+1.Data as prop
+
+function User(props){
+   return <div>
+		<h1>{props.id}</h1>
+  <div>
+}
+
+   <User id={1} />
+
+2.State as Prop -Dynamic Prop
+
+  function User(){
+    const [id,setId] = useState(1)
+    return <UserDetails id={id} />
+  }
+
+3.function as Prop- Listeners as Prop
+
+  function User(){
+    const [id,setId] = useState(1)
+    return <UserDetails setId={setId} />
+  }
+
+4.Component as Prop
+
+Component as Prop syntax we use heavily in Next.js
+
+Component Rendering:
+
+function Tab(props){
+   return <> {props.children} </>
+}
+
+<Tab/> - Self Closing
+  This component has no children
+
+<Tab>
+    <Grid/> -  Component as Prop
+<Tab>
+......................................................................***********************************..................
+.....................................................................................
+			 Every thing is component  in Next.js
+....................................................................................
+
+Page Component: - page.js
+  It is place holder component which displays ui.
+
+Layout Component:
+  It is container component which holds Page Component
+
+
+   layout - parent
+	  ------------------------------
+          |                             |
+                      Page -child |
+          |                             |
+          |                             |
+          |                             |
+           -----------------------------
+
+<Layout>
+   <Page/>
+</Layout>
+
+How to declare components?
+
+ 1.every component must be "functional component" - No Class Component.
+ 2.every in built component (page,layout...)  must be exported using "export default" only.
+ 3.Every Next application must have "root layout" src/app/layout.js
+ 4.Every Next application may have  "home/landing page" src/app/page.js
+ 5.Component Name can be any thing like HomePage,Home,MyHomePage,MyLayout etc..
+
+How to create Page and layout Components ?
+
+src/page.js
+
+function Home() {
+  //you must return jsx 
+  return <div>
+    <h1>Home Page</h1>
+  </div>
+}
+
+export default Home;
+
+src/app/layout.js
+export default function RootLayout(props) {
+    return <html lang="en">
+        <body>
+            {props.children}
+        </body>
+    </html>
+}
+
+								Routing
+.............................................................................................................................................................
+
+Routing is nothing but mapping resources against url.
+
+Types of Routing:
+
+1.page routing
+    It is old form of routing pattern, now it is not used
+   page routing was available before next.js version 12
+
+2.app routing
+    It is modern form of routing pattern, now it is heavily used
+    app routing has been available from next.js version 13 onwards
+
+Routing is enabled by mapping "folder" against url
+.............................................................................................
+			  Nested Routing and Segments
+.............................................................................................
+
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... core-routing
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\core-routing.
+
+...........................................................................................................................................................
+							Nested Folders and Routing
+..........................................................................................................................................................
+
+src/app/welcome/page.js
+
+export default function WelcomePage(){
+    return <h1>Welcome Page</h1>
+}
+
+http://localhost:3000/welcome -----> it will show page.js content of welcome/page.js
+
+src/app/about/page.js
+
+export default function About(){
+    return <h2>About</h2>
+}
+http://localhost:3000/about - it will show page.js and content of about/page.js
+
+Nested Layout:
+  
+src/app/layout.js - Root Layout.
+
+ Every Next app must have one single root layout.	
+
+src/app/welcome/layout.js  -Nested layout.
+//nested layout.
+
+export default function WelcomeLayout({ children }) {
+    return <div id="welcome layout">
+        {children}
+    </div>
+}
+
+Note:
+ inside nested folder, layout.js is optional but inside root folder layout.js is required
+ page.js is required for every folder.
+
+.............................................................................................................................................................
+				  Deep Nesting
+............................................................................................................................................................
+
+Dashboard:
+
+src/app/dashboard/layout.js
+export default function DashboardLayout({ children }) {
+    return <div id="dashboardLayout">
+        {children}
+    </div>
+}
+src/app/dashboard/page.js
+export default function Dashboard(){
+    return <h1>Dashboard Page</h1>
+}
+
+src/app/dashboard/settings/layout.js
+export default function SettingsLayout({ children }) {
+    return <div id="settingsLayout">
+        {children}
+    </div>
+}
+src/app/dashboard/settings/page.js
+export default function Settings() {
+    return <>
+        <h1> Settings</h1>
+    </>
+}
+
+src/app/dashboard/settings/password/layout.js
+export default function PasswordLayout({ children }) {
+    return <div id="passwordLayout">
+        {children}
+    </div>
+}
+
+src/app/dashboard/settings/password/page.js
+export default function Password(){
+    return <h2>Password Page</h2>
+}
+..............................................................................................................................................................
+		Folder is created what if the page.js is not created - not-found.js
+...............................................................................................................................................................
+eg:
+
+src/app/profile
+
+http://localhost:3000/profile
+
+404
+This page could not be found.
+
+if there is no page.js , then next will show the error page automatically which is mapped against not-found.js.
+
+if you dont want default error page and its content, then you can override "not-found.js"
+
+src/app/not-found.js
+export default function NotFound() {
+    return <h1>Oops,Something went Wrong</h1>
+}
+
+..........................................................................................................................................................
+						 Public Access Route
+if you have different name other than page.js, it will not be available for public access.
+
+app/settings/config.js
+
+http://localhost:3000/settings/config - It will throw error..
+............................................................................................................................................................
+
+....................................................................................................................................................
+		 			Component Driven Archiecture
+....................................................................................................................................................
+
+Layout is container, Page is mapped against route segment, which displays UI.
+
+Can Page Hold other Components?
+
+    Layout
+          | 
+       Page
+            |
+ UserProfile
+     |
+    UserList
+      |
+      UserItem
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... components-app
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\components-app.
+
+....................................................................................................................................................
+		 			Component Driven Archiecture
+....................................................................................................................................................
+
+Layout is container, Page is mapped against route segment, which displays UI.
+
+Can Page Hold other Components?
+
+    Layout
+          | 
+       Page
+            |
+ UserProfile
+     |
+    UserList
+      |
+      UserItem
+G:\IBM\2025\May\nextjs>npx create-next-app@latest
+√ What is your project named? ... next-components
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\May\nextjs\next-components.
+
+Co-location:
+
+     In addition to special files, you have the option to colocate your own files (e.g. components, styles, tests, etc) inside folders in the app directory.
+
+src/app/profile/components/ProfileList.jsx
+
+export default function ProfileList(props){
+
+    return <ul>
+          {
+            props.data.map(profile=>{
+                return <li key={profile.id}>
+                    <span>{profile.name}</span>
+                </li>
+            })
+          }
+    </ul>
+}
+
+src/app/profile/components/Profile.jsx
+
+//import alises syntax from Next.js
+import { PROFILES } from "@/app/mock-data/profiles";
+// import { PROFILES } from "../../mock-data/profiles";
+// import ProfileList from "./ProfileList";
+import ProfileList from '@/app/profile/components/ProfileList'
+
+export function Profile() {
+    return <>
+        <ProfileList data={PROFILES} />
+    </>
+}
+
+src/app/profile/page.js
+// import { Profile } from "@/app/pcomponents/Profile"
+import { Profile } from '@/app/profile/components/Profile'
+
+export default function ProfilePage() {
+    return <div>
+        <Profile />
+    </div>
+}
+
+src/app/profile/layout.js
+
+export default function ProfileLayout({children}){
+    return <div>
+         {children}
+    </div>
+}
+
+Lab:
+
+ Create Posts Components and list all Posts
+...
+
+.............................................................................................
+			     Component Types and Rendering Types
+.....................................................................................
+
+Rendering is nothing but page preparation (html creation).
+
+How to create html and where to create Html?
+
+Where:
+ rendering can take place in the server or on the client.
+
+When:
+  At Server side:
+   It can happen either ahead of time at build time.
+   or on every Request at runtime.
+
+With next js , two types of rendering methods are available.
+
+1.Server-side rendering
+   1.0. Request time
+   1.1. Static site Generation - build time
+   1.2. ISR - Incremental Static rendering - first Build time and later runtime.
+
+2.Client-side Rendering
+   Preparing portion of page at client side , which is similar to SPA Apps.
+
+Component types:
+ Based on Rendering, we can classify the component into two category.
+
+1.Server Component
+   Server components are rendered at server side
+2.Client components
+   Clients components are rendered at client side
+
+      By default all components are "Server Rendered Components"
+
+   page,layouts,templates,notfound,loading,default all are server components only
+
+Even When create custom components
+
+export default function Greet(props) {
+     return <>
+        <h1>{props.message}</h1>
+     </>
+}
+.....................................................................................
+			 	Client Component
+....................................................................................
+
+
+Generally React application is component driven....
+
+Component which may have logic to interact with user like button clicks,typing,animations,data fetch at client side,hooks, any dom manipulation......
+
+The components can be co-located..
+
+Client components allow us to write interactive UI that is prendered on the server and can use client javascript to run in the browser.
+
+Advantages of client Rendering:
+
+1.Interactivity
+   Client components uses "state,effects,event listener" , meaning they can provide immediate feedback to the user and update the UI.
+
+2.Browser APIs:
+    Client components have access the browser apis like Storage,geo location....
+
+
+src/app/review/components/review.jsx
+
+import { useState } from "react"
+
+const Review = props => {
+    const [like, setLike] = useState(0)
+    return <div>
+            <h1>Like {like}</h1>
+    </div>
+}
+export { Review }
+
+Ecmascript file had an error
+> 1 | import { useState } from "react"
+    |          ^^^^^^^^
+  2 |
+  3 | const Review = props => {
+  4 |     const [like, setLike] = useState(0)
+
+You're importing a component that needs `useState`. This React hook only works in a client component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+
+Why this error?
+
+If any component having "hooks,listners,state",then it cant be compiled at server, now need to tell to the next js compiler, you have to compile or render this code in client side.
+
+How to tell?
+ we have to use a directive.
+
+Directive is instruction to the compiler.
+
+"use client" - directive
+
+eg:
+src/app/review/components/review.jsx
+
+'use client'
+
+import { useState } from "react"
+const Review = props => {
+    const [like, setLike] = useState(0)
+    return <div>
+        <h1>Like {like}</h1>
+        <button onClick={() => {
+            setLike(like + 1)
+        }}>+</button>
+    </div>
+}
+export { Review }
+
+src/app/review/page.js
+import { Review } from "./components/Review";
+
+export default function ReviewPage(){
+    return <div>
+        <Review/>
+    </div>
+}
+
+How to know the client component?
+
+if component has 
+
+1.useState hook
+2.Any listener
+3.useEffect hook
+4.Browser apis
+5.state declaration
+
+Task:
+  CURD operation using Array:
+
+Solution:
+'use client'
+
+import { useState } from "react"
+
+export default function Post(props) {
+    const [posts, setPosts] = useState([
+        { id: 1, title: 'Post 1', body: 'this is first Post' },
+        { id: 2, title: 'Post 2', body: 'this is second Post' }
+    ])
+    //To handle submitt button either add or update
+    const [isEditing, setIsEditing] = useState(false)
+
+    //To handle form : to add new post into list
+    const [form, setForm] = useState({ title: '', body: '', id: null })
+
+    //Listeners : To save or update Post
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        isEditing ? updatePost() : addPost()
+    }
+    //
+    const updatePost = () => {
+        //array update
+        setPosts(posts.map(post => (post.id === form.id ? form : post)))
+        //Reset/clear the form
+        setForm({ title: '', body: '', id: null })
+        //reset add 
+        setIsEditing(false)
+    }
+    const addPost = () => {
+        //new Post object
+        const newPost = { id: Date.now(), title: form.title, body: form.body }
+        //add post into posts array
+        setPosts([...posts, newPost])
+        //Reset/clear the form
+        setForm({ title: '', body: '', id: null })
+    }
+
+    //Edit Post
+    const handleEdit = (post) => {
+        console.log(post)
+        //load into form fields
+        setForm({ title: post.title, body: post.body, id: post.id })
+        //reset Flag from add to edit
+        setIsEditing(true)
+    }
+    //Delete Post
+    const handleDelete = id => {
+        setPosts(posts.filter(post => post.id !== id))
+    }
+
+    return <div>
+        {/* To add new post or edit existing */}
+        {/* Todo: Remove this after completing */}
+        {/* {JSON.stringify(form)} */}
+        <form onSubmit={handleSubmit}>
+            <div>
+                <input type="text" required onChange={e => setForm({ ...form, title: e.target.value })} value={form.title} placeholder="Title" />
+            </div>
+            <div>
+                <textarea placeholder="Body" required onChange={e => setForm({ ...form, body: e.target.value })} value={form.body} />
+            </div>
+            <div>
+                <button type="submit">{isEditing ? 'Update' : 'Add'} Post</button>
+            </div>
+        </form>
+
+        {/* List existing Posts */}
+        <ul>
+            {posts.map(post => {
+                return <li key={post.id}>
+                    <h2>{post.title}</h2>
+                    <p>{post.body}</p>
+                    <button onClick={(e) => {
+                        handleEdit(post)
+                    }}>Edit</button>
+                    <button onClick={(e) => {
+                        handleDelete(post.id)
+                    }}>Delete</button>
+                </li>
+            })}
+        </ul>
+    </div>
+}
+...................................................................................................................................................
+							..............................................................................................
+				Patterns for client and server components
+.............................................................................................
+
+1.Server component uses another Server Component
+   inside layout.js we use page.js
+   inside page.js we use about.jsx 
+
+2.Server component uses client component
+
+3.Client component uses another server component
+
+4.Client component uses another client component
+
+
+2.Server component uses client component
+
+Server:
+
+src/app/reviews/page.js
+import { Like } from './components/like'
+
+export default function ReviewPage() {
+    return <div>
+        <h1>Review Page</h1>
+        <Like />
+    </div>
+}
+
+Client:
+src/app/reviews/components/likes.jsx
+
+'use client'
+import { useState } from "react"
+export const Like = props => {
+    const [value, setValue] = useState(0)
+
+    const onLike = () => {
+        setValue(value + 1)
+    }
+    return <>
+        <h1>Like {value}</h1>
+        <button onClick={onLike}>Like</button>
+    </>
+}
+
+Note:
+ if server uses client, the client component must be marked with "use client" directive
+
+
+...........................................................
+		2.Client component uses another server component
+.........................................................................................................................................................
+
+//server component
+src/app/reviews/components/comments.jsx
+//server component
+export const Comments = ()=> {
+    return <>
+     <h1>Comments  Server Compoent</h1>
+    </>
+}
+
+//client component
+src/app/reviews/components/dislike.jsx
+
+
+'use client'
+
+import { useState } from "react"
+import { Comments } from "./comments"
+
+export const Dislike = ()=> {
+ const [value,setValue]= useState(0)
+ return <>
+     <h1>Dislike-Client Component</h1>
+      <h2>Value  {value}</h2>
+      {/* Server component */}
+      <Comments/>
+ </>
+
+}
+
+src/app/reviews/page.js
+import { Dislike } from './components/dislike'
+
+export default function ReviewPage() {
+    return <div>
+        <h1>Review Page</h1>
+        <Dislike/>
+    </div>
+}
+
+ if client uses another server component,"server component automatically becomes client component"
+
+                 When we use this pattern we loose server rendering.
+
+In the above code comments component runs in the client only.
+
+
+What if "client uses server component" but at the same time, i dont want to loose server rendering feature?
+
+Solution:
+
+  Pass Server Component as Prop to Child  component.
+
+Server:
+src/app/client/components/myserver.jsx
+export default function MyServer(){
+    return <>
+        <h1>Server Compoent</h1>
+    </>
+}
+
+Client
+src/app/client/components/myclient.jsx
+'use client'
+
+export const MyClient = (props) => {
+
+    return <div>
+        <h1>Client Component</h1>
+        {props.children}
+    </div>
+}
+
+
+Page
+src/app/client/page.js
+import { MyClient } from "./components/myclient";
+import MyServer from "./components/myserver";
+
+export default function ClientComponentPage(){
+    return <div>
+            <MyClient>
+                {/* Pass server as prop */}
+                <MyServer/>
+            </MyClient>
+    </div>
+}
+....................................................................................
+		3.Client Compoent uses another client Component
+.....................................................................................
+
+
+Page:
+src/app/counter/page.js
+import Counter from "./components/counter";
+
+export default function CounterPage(){
+    return <div>
+        <h1>Counter Page</h1>
+        <Counter/>
+    </div>
+}
+
+src/app/counter/counter.jsx
+
+'use client'
+
+import Increment from "./increment"
+
+export default function Counter() {
+
+    return <>
+        <h1>Counter Component</h1>
+        <Increment/>
+    </>
+}
+
+src/app/counter/increment.jsx
+
+
+'use client'
+import { useState } from "react"
+
+export default function Increment() {
+  const [value,setValue] = useState(0)
+    return <>
+        <h1>Increment Value {value}</h1>
+    </>
+}
+
+Note :
+
+If client component uses another client component, that another client component no need to use 'use client' directive.
+
+Note :
+
+If client component uses another client component, that another client component no need to use 'use client' directive.
+
+This would be very useful when we use thrid party ui components into next js
+.....................................................................................
+
+Eg:
+How to use react carbon lib
+
+Steps:
+
+1.npm install @carbon/react
+
+2.create client component
+
+src/app/clientcomponents/MyButton.jsx
+'use client'
+
+import { Button } from '@carbon/react';
+
+export function MyButton() {
+    return <>
+        <Button kind="danger">
+            Button
+        </Button>
+
+        <Button kind="danger--tertiary">
+            Tertiary Danger Button
+        </Button>
+
+        <Button kind="danger--ghost">
+            Ghost Danger Button
+        </Button>
+    </>
+}
+
+3.Use that client component inside another client component or server component
+
+import { Counter } from "./components/counter";
+import { MyButton } from "./components/MyButton";
+
+export default function CounterPage(){
+    return <div>
+        <Counter/>
+        <hr/>
+        <MyButton/>
+    </div>
+}
+
+Task:
+ Build simple shopping cart using client components
+
+Features
+1.Loads cart items from localStorage when page loads
+2.Add new Items to the cart dynamically
+3.Removes items with a delete button
+4.saves the cart back to the localStorage whenever it changes
+5.persist data even after page refresh.
+
+........................*******************.................................................
+		  Advanced Routing - Linking and Navigation
+..............................................................................................
+
+There are four ways to navigate between routes in Next.js
+
+- Using the <Link> Component (Client Component)
+- Using useRouter hook (client Component)
+- Using the native browser History API (client)
+- Using redirect function (Server component)
+
+Navigation can happen  in two places
+
+1.Server side redirection/navigation
+   Redirection is controlled by Server
+
+2.Client Side Redirection/Navigation
+   Redirction is controlled by browser
+
+Server Redirection:
+1.redirect function
+2.permantRedirect function
+3.routeConfig file
+4.API redirections - NextReponse.redirect
+
+
+Client Side Naviation:
+1.Link componet
+2.useRouter Hook
+3.Browser Native History API.
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... linking-navigation
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\linking-navigation.
+
+
+Link Component:
+
+ Link is react component that extends the HTML <a> element to provide client side navigation between routes.
+
+ Link component has lot of properties
+ 1.href
+ 2.replace
+ 3.scroll
+ 4.prefech
+
+ href property
+ value of href can be string or object
+
+href="/route"
+href={{pathname:'/route'}}
+
+eg:
+
+src/app/components/navbar.jsx
+import Link from "next/link";
+
+export default function NavBar() {
+
+    return <nav>
+        <ul>
+            <li><Link href={{ pathname: '/about' }}>About</Link></li>
+            <li><Link href={{ pathname: '/clients' }}>Clients</Link></li>
+        </ul>
+    </nav>
+}
+
+src/app/layout.jsx
+import NavBar from "@/app/components/navbar";
+import "./globals.css";
+
+export const metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+          <NavBar/>
+        <hr />
+        {children}
+        <footer>
+          <p>This is footer</p>
+        </footer>
+      </body>
+    </html>
+  );
+}
+.....................................................................................
+					Active Links
+.......	..............................................................................
+
+How to enable active link feature?
+
+you can use hook "usePathname()" to determine if link is active or not.
+
+For example to add a css class to the active link, you can check the current pathname matches the of the link.
+
+Syntax:
+import {usePathname} from 'next/navigation'
+
+const pathname = usePathname()
+
+Link className={`link ${pathname=== '/' ? 'active' : ''}`}>Home</Link> 
+
+
+src/app/layout.js
+import { Inter } from "next/font/google";
+import Link from "next/link";
+import { usePathname } from 'next/navigation'
+
+// import "./globals.css";
+import './link.css'
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }) {
+
+  const pathname = usePathname()
+
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <div id="header">
+          <h1>Header</h1>
+          <hr />
+          {/* Nav Bar */}
+          <nav>
+            <ul>
+              <li>
+                <Link className={`link ${pathname === '/' ? 'active' : ''}`} href={{ pathname: '/' }}>Home</Link> </li>
+              <li>
+                <Link href={{ pathname: '/about' }}>About</Link>
+              </li>
+              <li>
+                <Link href={{ pathname: '/products' }}>Products</Link>
+              </li>
+              <li>
+                <Link href={{ pathname: '/customercare' }}>Customer Care</Link>
+              </li>
+            </ul>
+
+          </nav>
+        </div>
+        <div id="footer">
+          <h3>footer</h3>
+        </div>
+      </body>
+    </html>
+  );
+}
+
+After running , you will get error, 
+
+Error: 
+  × You're importing a component that needs usePathname. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
+  │ Learn more: https://nextjs.org/docs/getting-started/react-essentials
+  │ 
+  │ 
+   ╭─[G:\IBM\2024\June\NextJs\linking-navigation\src\app\layout.js:1:1]
+ 1 │ import { Inter } from "next/font/google";
+ 2 │ import Link from "next/link";
+ 3 │ import { usePathname } from 'next/navigation'
+   ·          ───────────
+ 4 │ 
+ 5 │ // import "./globals.css";
+ 6 │ import './link.css'
+
+Because usePathname is a hooks works in client component only.
+
+....................................................................................
+
+Solution:
+
+Create client component , use usePathName hook.
+
+src/app/components/Navbar.jsx
+
+'use client'
+import Link from "next/link";
+import { usePathname } from 'next/navigation'
+import '../link.css'
+
+export function Links() {
+    const pathname = usePathname()
+
+    return <nav>
+        <ul>
+            <li>
+                <Link className={`link ${pathname === '/' ? 'active' : ''}`} href={{ pathname: '/' }}>Home</Link> </li>
+            <li>
+                <Link className={`link ${pathname === '/about' ? 'active' : ''}`} href={{ pathname: '/about' }}>About</Link>
+            </li>
+            <li>
+                <Link className={`link ${pathname === '/products' ? 'active' : ''}`} href={{ pathname: '/products' }}>Products</Link>
+            </li>
+            <li>
+                <Link className={`link ${pathname === '/customercare' ? 'active' : ''}`} href={{ pathname: '/customercare' }}>Customer Care</Link>
+            </li>
+        </ul>
+
+    </nav>
+
+}
+
+src/app/layout.js
+import { Inter } from "next/font/google";
+import { Links } from "./components/NavBar";
+
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+    title: "Create Next App",
+    description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }) {
+
+
+    return (
+        <html lang="en">
+            <body className={inter.className}>
+                <div id="header">
+                    <h1>Header</h1>
+                    <hr />
+                    {/* Nav Bar */}
+                    <Links />
+                </div>
+                {children}
+                <div id="footer">
+                    <h3>footer</h3>
+                </div>
+            </body>
+        </html>
+    );
+}
+
+Note: 
+Rest of the pages are remain same.
+....................................................................................
+				 useRouter Hook
+...................................................................................
+
+useRouter hook allows you programmetically change route from client components.
+
+src/app/components/DashboardNavigator.jsx
+
+'use client'
+
+import { useRouter } from "next/navigation"
+
+export function DashBoardNavigator() {
+    const router = useRouter()
+    return <>
+        <button onClick={() => {
+            router.push('/dashboard')
+        }}>GoToDasbhoard</button>
+    </>
+}
+
+
+src/app/page.js
+import { DashBoardNavigator } from "./components/Dashboard";
+
+
+export default function HomePage(){
+  return <div>
+        <h1>Home Page</h1>
+        <DashBoardNavigator/>
+  </div>
+}
+
+src/app/dashboard/page.js
+export default function DashboardPage(){
+    return <div>
+        <h2>Welcome to Dashboard</h2>
+    </div>
+}
+
+..............................................................................................
+			Advanced Routes - Dynamic Routes
+
+What is Dynamic Route?
+   When you don't know the exact segment names ahead of time and want to create routes from dynamic data, you can use Dynamic Segments that are filled in at request time or prerendered at build time.
+
+/users
+/users/1
+/posts/comments/1
+	
+How to create dynamic route?
+
+Convention:
+   A dynamic segment can be created by wrapping a folder's name in square brackets.
+  [folderName]
+   eg:
+     [id] or [city] or [slug]
+					
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... dynamic-routes
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\dynamic-routes.
+
+.....................................................................................
+			 Building Master detail page
+.....................................................................................
+
+Ways to build:
+1.Using mock data
+2.Using api call
+
+
+Using Mock data:
+
+src/app/todos/page.js
+// import { TODOS } from "../mock-data/todos";
+import { TODOS } from "@/app/mock-data/todos" //import alise
+
+import Link from "next/link";
+
+export default function TodosPage() {
+    return <div>
+        <ul>
+            {
+                TODOS.map(todo => {
+                    return <li key={todo.id}><span>
+                        <Link href={`/todos/${todo.id}`}>{todo.title}</Link>
+                    </span></li>
+
+                })
+            }
+        </ul>
+    </div>
+}
+
+src/app/todos/[id]/page.js
+
+import { TODOS } from "@/app/mock-data/todos"
+
+export default async function TodosDetailsPage(props) {
+    const todosId = await props.params.id
+    const todo = TODOS.find(todo => todo.id == todosId)
+    return <div>
+        <h1> {todosId} details</h1>
+        <h2>{todo.title}</h2>
+        <h3>{todo.status ? 'done' : 'not done'}</h3>
+
+    </div>
+}
+...................................................................................................................................................................
+Using Api:
+...................................................................................................................................................................................
+
+src/app/photos/page.js
+import Link from "next/link"
+
+//function to fetch data
+export async function fetchPhotos() {
+    try {
+        const url = 'https://jsonplaceholder.typicode.com/photos'
+        const response = await fetch(url)
+        const photos = await response.json()
+        return photos
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+export default async function PhotosPage() {
+
+    const photos = await fetchPhotos()
+
+    return <>
+        <ul>
+            {
+                photos.map(photo => {
+                    return <li key={photo.id}>
+                        <Link href={`/photos/${photo.id}`}>{photo.title}</Link>
+                    </li>
+                })
+            }
+        </ul>
+    </>
+}
+
+src/app/photos/[id]/page.js
+
+export async function fetchPhotosById(id) {
+    const url = `https://jsonplaceholder.typicode.com/photos/${id}`
+    const response = await fetch(url)
+    const photo = await response.json()
+    return photo
+}
+
+export default async function PhotosDetailPage(props) {
+    const id = await props.params.id
+    const photo = await fetchPhotosById(Number(id))
+
+
+    return <div>
+        <h1>Photos Details Page</h1>
+        <h2>Photo Id :{photo.id} </h2>
+        <h3>AlbumId : {photo.albumId}</h3>
+        <p>{photo.title}</p>
+        <p>{photo.thumbnailUrl}</p>
+    </div>
+}
+
+..........................................................................................................................................................
+				Styling-CSS,Fonts,Images
+
+CSS:
+1.Global CSS
+2.CSS Modules
+3.CSS Framworks
+  ->Tailwind framwork
+  ->bootstrap
+  ->SASS
+4.CSS in js
+
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... styling-app
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\styling-app.
+
+Global css:
+ You can use global css to apply style across the application.
+
+To use global css,create a new css file, inside src/app/globals.css
+
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+you have to import in root layout /app/layout.js to apply styles to every route in the application.
+
+import "./globals.css";
+
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+      </body>
+    </html>
+  );
+}
+Tailwind css:
+.............
+
+if you want to integrate tailwind
+
+steps:
+1.you have to install tailwind
+
+ npm i  -D tailwindcss @tailwindcss/postcss postcss
+
+2.configure tailwind framework with next js app
+
+postcss.config.mjs
+
+const config = {
+  plugins: {
+    tailwindcss: {},
+  },
+};
+
+export default config;
+
+3.tailwind configuration
+tailwind.config.mjs
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+      },
+    },
+  },
+  plugins: [],
+};
+.....
+
+4.integrate tailwind with globals.css
+
+@import 'tailwindcss'
+
+eg;
+Designing Simple Card layout:
+
+src/app/components/Card.jsx
+
+export function Card({ title, description }) {
+
+    return <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+        <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2">{title}</div>
+            <p className="text-gray-700 text-base">{description}</p>
+        </div>
+    </div>
+}
+
+import { Card } from "./components/card"
+
+export default function Home() {
+  //card data
+  const cardData = [{
+    title: 'Card-1',
+    description: 'This is first card'
+  },
+  {
+    title: 'Card-2',
+    description: 'This is second card'
+  }, {
+    title: 'Card-3',
+    description: 'This is third card'
+  },
+  {
+    title: 'Card-3',
+    description: 'This is third card'
+  },
+  {
+    title: 'Card-3',
+    description: 'This is third card'
+  },
+  {
+    title: 'Card-3',
+    description: 'This is third card'
+  }
+  ]
+
+  return <div className="p-10">
+    <h1 className="text-3xl font-bold mb-6">Card Layout</h1>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        cardData.map((card, index) => {
+          return <Card key={index} title={card.title} description={card.description} />
+        })
+      }
+    </div>
+  </div>
+}
+..........................................................................................................................................................................................
+								CSS Modules
+..........................................................................................................................................................................................
+Why CSS Modules?
+
+Local Scope Prevents Clashes: CSS Modules use local scope to avoid style conflicts across different project parts, allowing component-scoped styling.
+Clear Style Dependencies: Importing styles into their respective components clarifies which styles impact which areas, enhancing code readability and maintenance.
+Solves Global Scope Problems: CSS Modules prevent the common issue of styles in one file affecting the entire project by localizing styles to specific components.
+Boosts Reusability and Modularity: CSS Modules allow the same class names in different modules, promoting modular, reusable styling.
+
+Module Syntax:
+YourName.module.css
+
+eg:
+
+src/app/profile/profile.module.css
+.profile {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profileImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 16px;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+
+}
+
+.bio {
+    font-size: 1rem;
+    color: #4a5566;
+    line-height: 1.5;
+
+}
+
+src/app/profile/components/Profile.jsx
+import styles from '../profile.module.css'
+
+export function Profile({ name, bio, imageUrl }) {
+    console.log(styles)
+    return <div className={styles.profile}>
+        <h1 className={styles.name}>{name}</h1>
+        <p className={styles.bio}>{bio}</p>
+    </div>
+}
+
+src/app/profile/page.js
+import { Profile } from "./components/Profile";
+
+export default function ProfilePage() {
+    const profile = {
+        name: 'Subramanian Murugan',
+        bio: 'Next.js Trainer | Micro services Consultant | Open Source Contributor'
+    }
+    return <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <Profile name={profile.name} bio={profile.bio} />
+        <Profile name={profile.name} bio={profile.bio} />
+        <Profile name={profile.name} bio={profile.bio} />
+    </div>
+}
+............................................................................................................................................................................................
+								External Stylesheets
+..........................................................................................................................................................................................
+
+Steps:
+1.install bootstrap
+   npm i -D bootstrap
+2.import in the root layout
+
+src/app/layout.js
+
+import 'bootstrap/dist/css/bootstrap.css'
+
+...........................................................................................................................................................................................
+			      					Image Handling
+............................................................................................................................................................................................
+
+Next.js comes with automatic image optimization for better performance and user experiences.
+
+How to handle static assets?
+
+You can store all static assets such as images,fonts,docments under public folder in the root directory
+
+if you are going to access any static assets inside code , you can use "/".
+
+Image: 
+ Next.js provides Image component which extends HTML <img> element.
+
+How to use Image component?
+
+ next/image package 
+
+<Image src="" alt="">
+
+src property can point local image or remote image.
+
+How to use local image?
+
+public/nature.png
+import Image from "next/image"
+
+export default function Nature(){
+    return <div>
+        <Image src="/nature.png" alt="Picture of  Nature" width={500} height={500}/ >
+    </div>
+}
+
+
+How to handle Remote Images?
+
+import Image from "next/image"
+
+export default function Nature() {
+    return <div>
+        {/* Remote Image */}
+        <Image src="https://via.placeholder.com/150/d32776" alt="Picture of something" width={500} height={500} />
+    </div>
+}
+
+After adding, you will get compile time error
+
+Error: Invalid src prop (https://via.placeholder.com/150/d32776) on `next/image`, hostname "via.placeholder.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+
+if you are accessing remote images, you must configure the location in next.config.mjs
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    images: {
+        remotePatterns: [new URL('https://fakestoreapi.com/img/**')],
+    }
+};
+
+export default nextConfig;
+
+...........................................................................................................................................................................................
+								Fonts
+........................................................................................................................................................................................
+
+By default Next js supports google fonts.
+
+import { Inter } from "next/font/google";
+import "./globals.css";
+
+//inter font configuration
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
+    </html>
+  );
+}
+Task:
+ You have to build master details page
+
+ Master page must have card layout.
+
+ Detail page must have full information with layouts.
+
+Data Url:
+https://fakestoreapi.com/products
+
+1.Using css with proper layouts.
+
+.......................................................................................................................................................................................
+						   		Data Fetching
+.........................................................................................................................................................................................
+
+Where data fetching can happen?
+
+Types of Data fetching:
+
+1.Server side data fetching
+2.Client side data fetching.
+
+Server side data fetching:
+..........................................
+=>Whenever possible , we recommend fetching data on the server,This allows you to
+ Have direct access to back end data resources(eg.databases)
+
+=>Keep your application more secure by preventing sensitive information, such as access tokens and API Keys, from being exposed to the client.
+
+=>Perform multiple data fetches with single round-trip instead of multiple individual requests on the client.
+
+=>Reduce client-server waterfalls.
+
+=>Depending on your region, data fetching can also happen closer to your data source, reducing latency and improving performance.
+........................................................................................................................................................................................
+                                                  Fetching Data Where It's Needed
+.......................................................................................................................................................................................
+
+	If you need to use the same data (e.g. current user) in multiple components in a tree, you do not have to fetch data globally, nor forward props between components.
+	 Instead, you can use fetch or React cache in the component that needs the data without worrying about the performance implications of making multiple requests for the same data.
+
+Parent - Layout  - apicall url eg fetch('/api/customers')
+   |
+   child  - Layout -apicall sameurl -fetch('/api/customers')
+     |
+     child -Layout -apicall sameurl -fetch('/api/customers')
+       |
+      child -Layout -apicall sameurl -fetch('/api/customers')
+        |
+        child- Page -apicall sameurl -fetch('/api/customers')
+
+..........................................................................................................................................................................................
+		  			Server side data fetching using "fetch" api
+..........................................................................................................................................................................................
+
+Fetching data on the server with fetch:
+...............................................................
+
+	Next.js extends the native "fetch" Web API to allow you to configure the caching and revalidating behavior for each fetch request on the server.
+
+React extends fetch to automatically memoize fetch requests while rendering a React component tree.
+
+There are four places You can use fetch:
+
+1.Server components
+2.Client Components
+3.Route Handlers,REST API
+4.Server Actions
+
+
+You can use fetch with async/await in "Server Components", in "Route Handlers", and in "Server Actions".
+
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... data-fetching
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\data-fetching.
+
+....................................................................................................................................................................................
+	    	Data Fetching from external API using "fetch" api
+...................................................................................................................................................................................
+
+Server component:
+
+src/app/todos/page.js
+
+//data fetching in server component using fetch 
+export async function fetchTodos() {
+    try {
+        const url = 'https://jsonplaceholder.typicode.com/todos'
+        const response = await fetch(url)
+        return response.json()
+    }
+    catch (err) {
+        return err
+    }
+
+}
+
+export default async function TodosPage() {
+    const todos = await fetchTodos()
+    return <>
+        <h1>Todos Page</h1>
+        <ul>
+            {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
+        </ul>
+    </>
+}
+.........................................................................................................................................................................................
+				  Server side data fetching using  "third party" api-axios
+........................................................................................................................................................................................
+
+	You can use any third party ajax api to call apis from next application but which is not recommended, because other apis will not have features such as caching,revalidation,request memoziation, we have to write extra code.
+
+........................................................................................................................................................................................
+			  	 Data fetching in Client components-Using fetch api
+.........................................................................................................................................................................................
+
+Note: 
+    fetching in client component mostly not recommended but still we can..
+
+src/app/posts/components/FetchPost.jsx
+
+'use client'
+
+import { useEffect, useState } from "react"
+
+export default function FetchPost() {
+    const [posts, setPosts] = useState([])
+    useEffect(() => {
+        async function fetchPostDetails() {
+            const url = 'https://jsonplaceholder.typicode.com/posts'
+            const response = await fetch(url)
+            const posts = await response.json()
+            console.log('client')
+            setPosts((myposts) => {
+                return posts.concat(myposts)
+            })
+        }
+
+        fetchPostDetails();
+
+
+    }, [])
+
+    return <>
+        <h1>Posts</h1>
+        <ul>
+            {
+                posts.map(post => {
+                    return <li>
+                        <span>{post.title}</span>
+                    </li>
+                })
+            }
+        </ul>
+    </>
+}
+
+src/app/posts/page.js
+import FetchPost from "./components/FetchPost"
+
+export default function PostPage(){
+    return <>
+      <FetchPost/>
+    </>
+}
+
+	Using "fetch" api  in client component is not recommended, the reason is which has no any caching feature is enabled, so fetch must be used only in server components/server side.
+
+What if i want to write client side data fetching with performance?
+
+ Dont use 'fetch' api
+
+		We have third party lib which internally wraps fetch only with caching features
+
+.....................................................................................................................................................................................
+		      		 Data Fetching in Client Components using SWR API
+......................................................................................................................................................................................
+
+What is SWR?
+
+	 The name “SWR” is derived from stale-while-revalidate, a HTTP cache invalidation strategy popularized by HTTP RFC 5861. SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data.
+
+SWR is wrapper for fetch api only.
+
+Why SWR
+1.Client side caching by default
+2.Cache revalidation by default
+3.You dont need to write hooks like useEffect,useState,
+4.You get data,error,loading flags
+
+npm i swr
+
+rc/app/components/PostsClientUsingSWR.jsx
+
+'use client'
+import useSWR from "swr"
+
+function fetcher(...args) {
+    return fetch(...args).then(res => res.json())
+}
+
+export default function FetchPostsUsingSWR() {
+    const url = 'https://jsonplaceholder.typicode.com/posts'
+    const { data, error, isLoading } = useSWR(url, fetcher)
+    if (error) {
+        return <div>
+            <h1>Failed To Return</h1>
+        </div>
+    }
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+    return <ul>
+        {
+            data.map(post => {
+                return <h2>{post.title}</h2>
+            })
+        }
+    </ul>
+}		
+	
+src/app/posts/page.js
+import FetchPost from "@/app/components/FetchPosts";
+import FetchPostsUsingSWR from "@/app/components/PostsClientUsingSWR"
+
+export default function PostPage(){
+    return <div>
+        <h1>Post Page Fetching Data from the Client Side</h1>
+        {/* <FetchPost/> */}
+        <FetchPostsUsingSWR/>
+    </div>
+}
+..........................................................................................................................................................................................
+							 Building REST APIs in Next.js
+.........................................................................................................................................................................................
+
+REST api can be used to write rest api which may talk to databases or external rest api or Graphql api or microservices
+
+Route Handler:
+  Route handlers are used to create api in next
+
+File Name:
+ route.js
+
+
+src/app/todos/
+   page.js
+   layout.js
+   route.js - it is not recommended to write like this
+
+Recommended Folder Structure:
+.....................................................
+src/app/api/todos
+    route.js
+    	[id]/
+    	  route.js
+
+url pattern
+ /api/todos 
+ /api/posts
+ /api/products
+ /api/products/1
+
+Syntax:
+
+export async function HTTPVerb(request){
+
+}
+=>Always route function must have "export" only.
+=>Function must have async keyword
+=>Function args may have request object.
+
+Supported Verbs:
+
+1.GET
+2.POST
+3.PUT
+4.PATCH
+5.DELETE
+6.HEAD
+7.OPTIONS
+
+API Arg:
+ NextRequest Object used to handle incoming client request
+ NextResponse Object used to send response to the client.
+
+Return Type always be json:
+  function name must be marked as "GET/POST"
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... rest-app
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\rest-app.
+
+Use case:Simple Rest api
+
+src/app/api/greeter/route.js
+import { NextResponse } from "next/server";
+
+export async function GET(req) {
+    //resonse
+    return NextResponse.json({ message: 'Welcome to Rest api' })
+}
+
+Testing:
+http://localhost:3000/api/greeter.
+
+Patterns:
+
+1.With Mock data
+2.With External REST API
+3.With Database
+
+With Mock data:
+GET,POST,GETById
+
+Dynamic route:
+
+ app/api/todos/[id]/route.js
+
+import todos from "@/app/mock-data/todos";
+import { NextResponse } from "next/server";
+
+// export async function GET(req,obj) {
+//     console.log(await obj.params)
+//     return NextResponse.json({ message: 'test' })
+// }
+
+export async function GET(req, { params }) {
+    const id = (await params).id
+    const todo = todos.find(todo => todo.id === +id)
+    return NextResponse.json(todo)
+}
+
+CURD Operations Using External API:
+...........................................................................................................................................................................................
+
+findById,update,delete
+src/app/api/comments/[id]/route.js
+import { NextResponse } from "next/server"
+
+//findBy Id
+const url = `https://jsonplaceholder.typicode.com/comments`
+
+export async function GET(request, { params }) {
+    try {
+        const id = (await params).id
+        const response = await fetch(`${url}/${Number(id)}`)
+        const comment = await response.json()
+        if (comment.id) {
+            return NextResponse.json(comment)
+        }
+        return NextResponse.json({ message: `Comment for ${id} Not found` })
+    }
+    catch (err) {
+        return NextResponse.json({ err: err })
+    }
+}
+
+//update
+export async function PUT(request, { params }) {
+    try {
+        const id = (await params).id
+        const { name, email, body } = await request.json()
+        if (name || email || body) {
+            const response = await fetch(`${url}/${Number(id)}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, body })
+            })
+            const updatedComment = await response.json()
+            return NextResponse.json(updatedComment)
+        }
+        return NextResponse.json({ message: `No Comment is available for the ${id}` })
+    }
+    catch (err) {
+        return NextResponse.json({ err: err })
+    }
+
+}
+
+//delete
+
+export async function DELETE(request, { params }) {
+    try {
+        const id = (await params).id
+        const response = await fetch(`${url}/${Number(id)}`, { method: 'DELETE' })
+        const comment = await response.json()
+        return NextResponse.json({ comment: comment })
+    }
+    catch (err) {
+        return NextResponse.json({ err: err })
+    }
+}
+................................................................................................................................................................................................................................
+			           		How to integrate with Ui layer
+.....................................................................................................................................................................................................................................
+
+src/app/comments/page.js
+
+
+export async function fetchComments() {
+    const response = await fetch('http://localhost:3000/api/comments')
+    const comments = await response.json()
+    return comments
+}
+export default async function CommentsPage() {
+    const comments = await fetchComments()
+    return <div>
+        <div>
+            {
+                comments.map(comment => {
+                    return <section key={comment.id}>
+                        <h1>comment Id: {comment.id} Post Id : {comment.postId} </h1>
+                        <h3>{comment.name}</h3>
+                        <h2>{comment.email}</h2>
+                        <p>{comment.body}</p>
+                    </section>
+                })
+            }
+        </div>
+    </div>
+}
+............................................................................................................................................................
+							
+					Database Integration
+...........................................................................................................................................................
+Next js can integrate with any data base including sql (mysql,oracle,postgresql) and no sql (mongo,neodb,redis)
+
+In order to talk to databases, application uses database drivers and apis....
+
+Mostly we use use database frameworks called "ORM- Object Relational Mapping" Framework..
+
+For Node js, We have many frameworks...
+
+1.Prisma
+2.Sequelize
+3.Type ORM
+etc...
+
+In order to work database, we need few things
+
+1.database  - mysql or mssql, or mongo database.
+
+How to setup database?
+
+ 1.download database and you have to install
+      https://www.postgresql.org/download/windows/
+ 2.via docker
+  
+Now a days no body , installing databases directly into machine, rather, we can install via docker.
+
+For training purposes we are going to use "immemory database". You dont need to install database manually either directly or via docker.
+
+In-Memory Databases:
+1.sqlite
+
+2.Database drivers
+ It is set of js programs to connect with databases, and sending sql statements.
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... db-app
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\db-app.
+
+we are going to use sqlite database...
+
+Any database we need to install database dirvers for prisma.
+
+3.Install sqlite database driver
+G:\IBM\2025\June\NextJs\db-app>npx prisma init --datasource-provider sqlite
+Need to install the following packages:
+prisma@6.9.0
+Ok to proceed? (y) y
+
+Fetching latest updates for this subcommand...
+
+✔ Your Prisma schema was created at prisma/schema.prisma
+  You can now open it in your favorite editor.
+
+warn You already have a .gitignore file. Don't forget to add `.env` in it to not commit any private information.
+
+Next steps:
+1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
+2. Run prisma db pull to turn your database schema into a Prisma schema.
+3. Run prisma generate to generate the Prisma Client. You can then start querying your database.
+4. Tip: Explore how you can extend the ORM with scalable connection pooling, global caching, and real-time database events. Read: https://pris.ly/cli/beyond-orm
+
+More information in our documentation:
+https://pris.ly/d/getting-started
+
+...................................................................................
+			    ORM Fundamentals
+....................................................................................
+What is orm?
+Object Relational Mapping
+ |         |       |
+Entity RDBMS    Binding
+
+In Database programs, we use sql query for creating,inserting, updating, deleting
+
+In ORM World, SQL queries are abstracted by apis like save, findAll, findById, remove,update..
+
+Entity Represents a "table" in the database.
+
+Schema :
+  The plan or structure
+
+Define Model (Enity)
+
+model User {
+
+}
+model Product {
+
+}
+
+Fields:
+ Fields are mapped in the table as columns
+
+Syntax:
+
+model ModelName { 
+ fieldName Type attributes
+}
+
+model Comment{
+ id Int @id @default(autoincrement())
+ title String
+ content String
+}
+
+id -  column Name(field)
+Int - Datatype
+@id -  attribute - Primiary Key
+@default - attribute- what is value we are going to assign to primary key
+autoincrement - function which generates values...
+
+Where to define this model?
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Table Structure
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+Generate tables inside database and create sql quries:
+
+
+G:\IBM\2025\June\NextJs\db-app>npx prisma migrate dev --name init
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": SQLite database "dev.db" at "file:./dev.db"
+
+SQLite database dev.db created at file:./dev.db
+
+Applying migration `20250613064450_init`
+
+The following migration(s) have been created and applied from new schema changes:
+
+migrations/
+  └─ 20250613064450_init/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+
+✔ Generated Prisma Client (v6.9.0) to .\node_modules\@prisma\client in 52ms
+
+
+Testing whether database tables are created or not
+npx prisma studio
+
+............................................................................................................................................................................................
+				Prisma Client api
+............................................................................................................................................................................................
+Prisma Client api is used to talk database from rest apis.
+
+src/lib/prisma.js
+//Prisma client api 
+import { PrismaClient } from "@prisma/client";
+const globalForPrisma = global
+export const prisma = globalForPrisma.prisma || new PrismaClient({ log: ["query"] })
+..............................................................................................................................................................										REST API with Prisma
+.....................................................................................................................................................................................
+
+
+src/app/api/users/route.js
+
+
+//write rest api which talks to database via prisma client
+
+import { prisma } from "@/app/lib/prisma";
+import { NextResponse } from "next/server";
+
+
+export async function GET(request) {
+    //connect to prisma 
+    const users = await prisma.user.findMany()
+    return NextResponse.json(users)
+}
+
+// create
+export async function POST(request) {
+    try {
+        const user = await request.json()
+        const response = await prisma.user.create({
+            data: user
+        })
+        return new NextResponse(JSON.stringify(response), {
+            status: 201,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+    }
+    catch (err) {
+        return NextResponse.json(err)
+    }
+}
+
+findById,update,delete
+
+src/app/api/users/[id]/route.js
+import { prisma } from "@/app/lib/prisma"
+import { NextResponse } from "next/server"
+
+export async function GET(request, { params }) {
+    try {
+        const id = (await params).id
+        const users = await prisma.user.findUnique({
+            where: {
+                id: id
+            }
+        })
+        if (!users) {
+            return NextResponse.json({ message: "UserNot Found", code: 404 })
+        }
+        return NextResponse.json(users)
+    }
+    catch (err) {
+        return NextResponse.json(err)
+    }
+
+}
+
+//update
+export async function PUT(request, { params }) {
+    try {
+        const id = (await params).id
+        const payload = await request.json()
+        const user = await prisma.user.update({
+            where: {
+                id
+            },
+            data: payload
+        })
+        if (!user) {
+            return NextResponse.json({ message: `No user found with ${id}`, code: 404 })
+        }
+        return NextResponse.json(user)
+    }
+    catch (err) {
+        return NextResponse.json(err)
+
+    }
+}
+
+//remove
+export async function DELETE(request, { params }) {
+    try {
+        const id = (await params).id
+        await prisma.user.delete({
+            where: {
+                id
+            }
+        })
+        return new NextResponse(null, { status: 404 })
+    }
+    catch (err) {
+        return NextResponse.json(err)
+
+
+    }
+}
+
+
+Task: 
+ CREATE UI with all CURD operations.
+............................................................................................................................................................................................								Database Operations with UI 
+........................................................................................................................................................................................
+
+
+src/app/users/components/users.jsx
+
+'use client'
+import { useState, useEffect } from 'react';
+
+export function User() {
+    const [users, setUsers] = useState([]);
+    const [formData, setFormData] = useState({ id: '', name: '', email: '', role: '' });
+    const [isEditing, setIsEditing] = useState(false);
+
+
+    useEffect(() => {
+        fetch('http://localhost:3000/api/users')
+            .then((res) => res.json())
+            .then((data) => setUsers(data));
+    }, []);
+
+
+    const handleEdit = (user) => {
+        setFormData(user);
+        setIsEditing(true);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (isEditing) {
+            // Update user
+            const res = await fetch(`http://localhost:3000/api/users/${formData.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: formData.name, email: formData.email, role: formData.role }),
+            });
+
+            if (res.ok) {
+                const updatedUser = await res.json();
+                setUsers((prev) => prev.map((user) => (user.id === updatedUser.id ? updatedUser : user)));
+            }
+            setIsEditing(false);
+        } else {
+            // Create new user
+            const res = await fetch('http://localhost:3000/api/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: formData.name, email: formData.email, role: formData.role }),
+            });
+
+            if (res.ok) {
+                const newUser = await res.json();
+                setUsers((prev) => [...prev, newUser]);
+            }
+        }
+
+        setFormData({ id: '', name: '', email: '', role: '' });
+    };
+    const handleDelete = async (id) => {
+        const res = await fetch(`http://localhost:3000/api/users/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (res.ok) {
+            setUsers((prev) => prev.filter((user) => user.id !== id));
+        }
+    };
+
+    return (
+        <div>
+            <h1 style={{textAlign:'center',fontSize:'35px'}}>User Management</h1>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        required
+                    />
+                </div>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Role"
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    required
+                />
+                <button type="submit">{isEditing ? 'Update User' : 'Add User'}</button>
+            </form>
+            <ul>
+                {users.map((user) => (
+                    <li key={user.id}>
+                        <div className="user-details">
+                            <span>
+                                {user.name} ({user.email}) - {user.role}
+                            </span>
+                        </div>
+                        <div className="actions">
+                            <button onClick={() => handleEdit(user)}>Edit</button>
+                            <button onClick={() => handleDelete(user.id)}>Delete</button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+
+        </div>
+    );
+}
+src/users/page.js
+import { Users } from "./components/users";
+
+export default function UsersPage(){
+
+    return <Users/>
+}
+
+global.css
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  margin: 100px;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form input {
+  width: calc(100% - 20px);
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #005bb5;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+li {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li .user-details {
+  flex-grow: 1; /* Allow the user details to take all available space */
+}
+
+li .actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end; /* Ensure buttons are aligned to the right */
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d32f2f;
+}
+
+button:first-of-type {
+  background-color: #4caf50;
+}
+
+button:first-of-type:hover {
+  background-color: #388e3c;
+}
+...........................................................................................................................................................................................
+				 				Server actions
+..........................................................................................................................................................................................
+	Server Actions are a feature in Next.js 15 that allow you to perform server-side operations directly from the client without creating an API route or an explicit handler.
+
+ This feature simplifies data fetching, form submissions, or other server-side logic by integrating it seamlessly into your component tree.
+
+Key Features of Server Actions in Next.js 15:
+
+1.Server-First Logic:
+  Runs on the server, avoiding unnecessary client-side processing.
+  Can securely access server-only resources like databases, environment variables, and APIs.
+  Direct Invocation from Components:
+
+  Trigger server-side logic directly via React components.
+ No need for separate API endpoints.
+
+2.Optimized Performance:
+ Reduces data fetching overhead.
+ Automatically optimizes the server-client data flow.
+
+3.Type Safety:
+  Built-in TypeScript support ensures type safety across your components and server logic.
+
+
+Integrated with App Router:
+
+Perfectly fits into Next.js's App Router system for organizing server and client code.
+
+
+Getting coding:
+
+'use server'
+
+export async function save(data){
+ 
+  //logic
+  
+}
+
+G:\IBM\2025\June\NextJs>npx create-next-app@latest
+√ What is your project named? ... server-actions
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+Creating a new Next.js app in G:\IBM\2025\June\NextJs\server-actions.
+
+
+Use Case : How to submit form data to server actions from client component.
+
+src/app/actions/userAction.js
+
+'use server'
+
+export async function createUser(data) {
+    console.log('Server actions', data)
+    //db operation here it can go ;  you can use prisma over here
+    
+    return { success: true, message: 'Data Saved successfully' }
+}
+src/app/forms/userForm.jsx
+'use client'
+
+import { createUser } from "@/app/actions/userActions";
+
+export default function CreateUserForm() {
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        const data = {
+            name: event.target.name.value,
+            email: event.target.email.value,
+        };
+
+        try {
+            const result = await createUser(data);
+            alert(`User created: ${result.message}`);
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        }
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input type="text" name="name" placeholder="Name" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <button type="submit">Create User</button>
+        </form>
+    );
+}
+
+src/app/forms/page.js
+import CreateUserForm from "./UserForm";
+
+export default function FormPage(){
+    return <div>
+        <h1>Registration Form</h1>
+        <CreateUserForm/>
+    </div>
+}
+.
+............................................................................................
+				Server Side Redirection
+............................................................................................
+
+
+   To redirect after a form submission in Next.js 15 with Server Actions, you can use the redirect function from the Next.js router or perform a client-side redirect after the form submission is complete.
+
+Here’s how you can handle both server-side and client-side redirects.
+
+1. Redirect After Form Submission (Server-Side)
+If you want to redirect the user immediately after the form submission directly on the server, you can use the redirect() method in Server Actions.
+
+In Next.js 15, the redirect() function can be used directly inside the server action to navigate the user after the form is processed.
+
+Note : convert existing form into server component,No Listener
+
+<form  action="serveraction"></form>
+<form onSubmit={handleSubmit}/> - client side form submission
+
+Server side form submission:
+
+<form method="post" action="users.do"> 
+
+ submit
+</form>
+
+
+<form method="post" action="users.jsp">
+
+
+</form>
+
+
+<form method="post" action="users.php">
+
+
+</form>
+
+
+<form method="post" action="users.aspx">
+
+
+</form>
+
+Next.js
+
+<form  action="serveraction"></form>
+
+............................................................................................
+				Server Side Redirection
+............................................................................................
+
+   To redirect after a form submission in Next.js 15 with Server Actions, you can use the redirect function from the Next.js router or perform a client-side redirect after the form submission is complete.
+
+Here’s how you can handle both server-side and client-side redirects.
+
+1. Redirect After Form Submission (Server-Side)
+If you want to redirect the user immediately after the form submission directly on the server, you can use the redirect() method in Server Actions.
+
+In Next.js 15, the redirect() function can be used directly inside the server action to navigate the user after the form is processed.
+
+Note : convert existing form into server component,No Listener
+
+<form  action="serveraction"></form>
+
+src/app/forms/userForm.jsx
+export default function CreateUserForm() {
+    return (
+        <form action={createUser} method="POST">
+            <div>
+                <label htmlFor="name">Name: </label>
+                <input type="text" id="name" name="name" required />
+            </div>
+
+            <div>
+                <label htmlFor="email">Email: </label>
+                <input type="email" id="email" name="email" required />
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
+
+src/app/actions/useraction.js
+//server actions are not components but it is pieace of code which is executed in server
+'use server'
+
+import { redirect } from "next/navigation"
+
+// export async function createUser(data) {
+//     console.log('server actions', data)
+//     console.log(data.get('name'))
+//     console.log(data.get('email'))
+
+//     return {
+//         success: true, message: 'Data saved successfully'
+//     }
+// }
+
+//redirection
+export async function createUser(data) {
+    console.log('server actions', data)
+    console.log(data.get('name'))
+    console.log(data.get('email'))
+
+    //redirect
+    redirect('/success')
+}
+
+Note :
+ Form data is submitted to server actions via "FormData" Object of js
+
+............................................................................................
+	     Transfering data from Server action to Success Page
+............................................................................................
+
+There are many ways
+
+1.Via Url -  Query Strings
+2.Via Session Object (cookies)
+
+............................................................................................
+	     Transfering data from Server action to Success Page
+............................................................................................
+
+There are many ways
+
+1.Via Url -  Query Strings
+2.Via Session Object (cookies)
+
+  redirect(`/success?name=${encodeURIComponent(data.get("name"))}&email=${encodeURIComponent(data.get("email"))}`);
+
+
+src/app/actions/userAction.js
+
+'use server'
+import { redirect } from "next/navigation"
+
+export async function createUser(formData) {
+    console.log('Server actions', formData)
+    //db operation here it can go ;  you can use prisma over here
+
+    //    return { success: true, message: 'Data Saved successfully' }
+   // redirect('/success')
+   
+  redirect(`/success?name=${encodeURIComponent(formData.get("name"))}&email=${encodeURIComponent(formData.get("email"))}`);
+}
+
+src/app/success/page.js
+'use client'
+	
+import { useSearchParams } from 'next/navigation';
+
+export default function SuccessPage() {
+    const searchParams = useSearchParams()
+    const name = searchParams.get('name');
+    const email = searchParams.get('email');
+
+    return <div>
+        <h1>User Form Submitted Successfully!!</h1>
+        <h1>Name : {name}</h1>
+        <h2>Email : {email}</h2>
+    </div>
+}
+.........................................................................................................................................................................................
+			     		Advanced Routing - Dynamic Routes
+			 	  		"Catch All Segement Routing"
+....................................................................................................................................................................................................................
+
+
+/todos/1
+  
+todos
+ |
+ [id]
+   |
+   page.js
+
+
+/shop ----> page.js
+
+/shop/a
+/shop/b
+/shop/c
+/shop/d
+
+shop
+ |
+ [a]
+   |
+   page.js
+ [b]
+   page.js
+ [c]
+   page.js
+
+shop/a/x
+shop/b/y
+
+                         What if dynamic routes are not predefined in advance...
+                      This where catchAll dynamic routing segment comes into picture
+
+The "catchAll" segment is used to capture dynamic route segments that can handle any number of path segments in the URL. This is useful for routing in scenarios where the exact number of path segments is uncertain.
+
+Example: Blog Application
+
+Let's assume you are building a blog application, and you want to allow access to various types of blog posts, such as categories, authors, and specific post titles.
+
+Folder Structure:
+
+With Catch All:
+
+shop
+  |
+  page.js
+[...slug]
+   |
+  page.js
+
+/shop/tops
+/shop/tops/tshirt
+/shop/dress/mens/shirt
+
+
+/app
+  /blog
+    /[...slug]
+
+In this structure, [...slug] is a dynamic catchAll route that can capture any path under /blog, whether it's /blog/technology/post-title or /blog/author/author-name.
+
+How to capture parameter?
+ {
+   slug:['tops','tshirt','dress','men','shirt']
+ }
+Real-Time Use Cases:
+1.Dynamic Blog Categories: If you want different blog categories like technology, health, etc., you can dynamically display posts based on the slug[0] element.
+
+2.Post Filtering: If users access author or category paths, you can render the appropriate content based on the path structure.
+
+3.Flexible Routing: This method is highly flexible, as it supports any number of URL segments.
+
+This approach makes routing in Next.js scalable, especially when dealing with multiple dynamic segments that need to be handled uniformly.
+
+>npx create-next-app@latest
+√ What is your project named? ... catchall-routing
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+
+src/app/shop/page.jsx
+export default function Shop(){
+    return <div>
+        <h1>Shop</h1>
+    </div>
+}
+
+src/app/shop/[...slug]/page.jsx
+export default async function ShopDetails({ params }) {
+    const values = await params
+    return <div>
+        <h1>Shop Details Page {JSON.stringify(values)}</h1>
+    </div>
+}
+.........................................................................................................................................................................................
+			     		Advanced Routing - Dynamic Routes
+		   	    		"Optional Catch All Segement Routing"
+...........................................................................................................................................................................................
+
+
+With Catch All:
+
+shop
+  |
+  page.js
+ [...slug]
+   |
+  page.js
+
+/shop/tops
+/shop/tops/tshirt
+/shop/dress/mens/shirt
+
+
+In CatchAll segement routing,the root folder has page.js, without that page.js what will happen?
+  You will get 404 - Page Not found
+
+http://localhost:3000/shop
+
+ There would be use case, i dont want page.js inside /shop 
+
+ Thats where we use "Optional CatchAll" segement is used
+
+With Optional CatchAll Segment:
+
+shop
+  |
+ [[...slug]] --optional CatchAll Segement...
+   |
+   page.js
+............................................................................................................................................................................................
+							Advanced Routing- Paralle Routing
+............................................................................................................................................................................................
+
+
+What is Parallel Route?
+
+ Generally inside a layout, we render only one page by default.
+
+What if i want to render "Multiple Pages" inside single a layout simultaneously or conditionally..
+
+"Parallel Routing allow you to render pages simultaneously or conditionally render one or more pages in the same layout.
+
+For highly section of an app, such as dashboards, and feeds on sites,Parellel routing can be used to implement complex routing patterns.
+
+
+Component View:
+
+ <Layout>
+    <Page/>
+ </Layout>
+
+Component View: Multiple Pages within a layout.
+
+<Layout>
+   <Page1/>
+   <Page2/>
+</Layout>
+
+Conditional Page Rendering:
+
+<Layout>
+   {condition ? <ThisPage/>:<ThatPage/>
+</Layout>
+
+>npx create-next-app@latest
+√ What is your project named? ... parallel-routing
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+
+
+Basic App Structure:
+
+src/app
+   |
+  page.js
+  layout.js
+
+ info
+  |
+  page.js
+  layout.js
+
+Here only info page is inserted into layout
+ I want to display two different pages called "team" and "analytics" with in info layout.
+
+
+src/app/game/layout.js
+export default function GameLayout(props) {
+    return <div id="gameslayout">
+        {props.children}
+    </div>
+}
+
+src/app/game/page.js
+
+export default function GamePage(){
+
+    return <div>
+        <h1>Game Page</h1>
+    </div>
+}
+
+3.Parallel Routing, we have to create folder with following syntax
+  @FolderName
+    |
+    layout.js
+    page.js
+
+ @folder is not available as public route like /folderName, this would be part of something else.
+
+Now if you test 
+
+http://localhost:3000/game/team
+
+   The out put would be pagenot found, the reason is if you cant access team page publicily, team page is part of something, that means, you must inject into game layout.
+
+How to inject?
+  via props
+
+insert team and analytics page content into game layout.
+
+export default function GameLayout(props) {
+    return <div id="gameslayout">
+        {/* Game Page content */}
+        {props.children}
+        {/* Team Page content */}
+        {props.team}
+        {/* Anaylitcs content */}
+        {props.anaylitics}
+    </div>
+}
+
+.........................................................................................................................................................................................
+						     Advanced Routing
+		     			Parallel Routing- Conditional Redering
+.........................................................................................................................................................................................
+
+As of now we have seen how to render mutiple pages into a layout.
+Now we are going to discuss how to render page or pages into a layout based on condition.
+
+Slot:
+  Portion of UI
+  slots are defined using named slots
+  Slots are defined with @folder Convention
+  For eg @team,@products,@services
+  Slots are passed as props to the shared parent layout.
+
+We render a slot based on UI on certain conditions such as checkbox, and options, authetication states.
+
+Syntax:
+@AdminPanel
+@UserPanel
+
+
+src/app/panel/page.js
+export default function Page(){
+    return <div>
+        <h1>Panel Page</h1>
+    </div>
+}
+
+src/app/panel/@AdminPanel/page.js
+
+export default function AdminPanel() {
+    return <div>
+        <h1>Admin</h1>
+    </div>
+}
+
+
+src/app/panel/@UserPanel/page.js
+
+export default function UserPanel() {
+    return <div>
+        <h1>User</h1>
+    </div>
+}
+
+src/app/panel/layout.js
+export default function PanelLayout(props) {
+    const isAdmin = false
+    return <div id="panelLayout">
+        {/* Panel Page */}
+        {props.children}
+        {/* Conditional Rendering */}
+        {isAdmin ? props.AdminPanel : props.UserPanel}
+    </div>
+}
+.........................................................................................................................................................................................
+							Advanced Routing - Route Groups
+.................................................................................................................................................................................................................................................
+
+What is Route Group?
+ In the app dir, nested folders are mapped to URL Paths, How ever you mark a folder as a route group to prevent     the folder being included in the Route's URL path
+
+
+src/app/dashboard/page.js ------> /dashboard
+
+You can mark a folder as a Route group to prevent the folder being included in the route url path
+
+Which is some times are called hidden dirs.
+
+Use case:
+ incase you are organizing your project into multiple folders those folders dont want to include in the url
+
+npx create-next-app@latest
+√ What is your project named? ... route-group
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+
+Route Group:
+
+src/app/ (FolderName) - this folder will not be part of url
+eg:
+src/app/(customerdomain)/customer/page.js
+export default function Customer(){
+    return <h1>Customer</h1>
+}
+
+URL:
+  http://localhost:3000/customer - Right URL Pattern
+
+http://localhost:3000/customerdomain/customer - wrong URL Pattern
+........................................................................................................................................................................................
+							Route Interceptors
+       					       Works based on Parrel Routing 
+
+npx create-next-app@latest
+√ What is your project named? ... route-interceptor
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+
+Steps:
+
+1.create mock-data
+
+src/app/mock-data/photo.js
+export default [
+    {
+        id: '1',
+        name: 'Kevin Canlas',
+        href: 'https://twitter.com/kvncnls/status/1471832344986324998',
+        username: '@kvncnls',
+        imageSrc: 'https://pbs.twimg.com/media/FGz_t1wXIAIFyT-?format=jpg',
+    },
+    {
+        id: '2',
+        name: 'Pedro Duarte',
+        href: 'https://twitter.com/peduarte/status/1463897468383412231',
+        username: '@peduarte',
+        imageSrc: 'https://pbs.twimg.com/media/FFDOtLkWYAsWjTM?format=jpg',
+    },
+    {
+        id: '3',
+        name: 'Ahmad Awais',
+        href: 'https://twitter.com/MrAhmadAwais/status/1338151679083032577',
+        username: '@MrAhmadAwais',
+        imageSrc: 'https://pbs.twimg.com/media/EpIR281XIAMUrEM?format=jpg',
+    },
+    {
+        id: '4',
+        name: 'Leandro Soengas',
+        href: 'https://twitter.com/lsoengas/status/1352302741339693061',
+        username: '@lsoengas',
+        imageSrc: 'https://pbs.twimg.com/media/EsRYK8oWMAEkObV?format=jpg',
+    },
+    {
+        id: '5',
+        name: 'Samina',
+        href: 'https://twitter.com/saminacodes/status/1466479548837482497',
+        username: '@saminacodes',
+        imageSrc: 'https://pbs.twimg.com/media/FFn7X76VgAEVTgs?format=jpg',
+    },
+    {
+        id: '6',
+        name: 'lafond.eth',
+        href: 'https://twitter.com/laf0nd/status/1464640065615929346',
+        username: '@laf0nd',
+        imageSrc: 'https://pbs.twimg.com/media/E374pyaWEAMCT2R?format=jpg',
+    },
+    {
+        id: '7',
+        name: '山岸和利💛',
+        href: 'https://twitter.com/ykzts/status/1426358452356407297',
+        username: '@ykzts',
+        imageSrc: 'https://pbs.twimg.com/media/E8txb2yVkAQxRVw?format=jpg',
+    },
+    {
+        id: '8',
+        name: 'Altngelo',
+        href: 'https://twitter.com/AfterDarkAngelo/status/1456372859090075648',
+        username: '@AfterDarkAngelo',
+        imageSrc: 'https://pbs.twimg.com/media/E374pyaWEAMCT2R?format=jpg',
+    },
+    {
+        id: '9',
+        name: 'Matias Baldanza',
+        href: 'https://twitter.com/matiasbaldanza/status/1404834163203715073',
+        username: '@matiasbaldanza',
+        imageSrc: 'https://pbs.twimg.com/media/E374pyaWEAMCT2R?format=jpg',
+    },
+];
+
+2.next configuration - next.config.mjs
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    images: {
+        domains:['pbs.twimg.com']
+    }
+};
+export default nextConfig;
+
+3.Create Master page
+
+src/app/page.js
+import Link from "next/link";
+import photos from "./mock-data/photos";
+import Image from "next/image";
+
+export default function Home() {
+  return <div className="container mx-auto">
+    <h1 className="text-center text-4xl font-bold m-10">PhotoGallary App</h1>
+    {/* render photos */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 auto-rows-max gap-6 m-10">
+      {photos.map(photo => {
+        return <Link key={photo.id} href={`/photos/${photo.id}`}>
+          <Image alt="Your Image"
+            src={photo.imageSrc}
+            height={500}
+            width={500}
+            className="w-full object-cover aspect-square"
+          />
+        </Link>
+      })}
+    </div>
+  </div>
+}
+
+4.Create Detail Page
+src/app/photos/[id]/page.js
+import photos from "@/app/mock-data/photos"
+import Image from "next/image"
+
+export default async function PhotoDetailsPage({ params }) {
+    const id = (await params).id
+    const photo = photos.find(photo => photo.id === id)
+    return <div className="container mx-auto my-10">
+        <Image alt="Your Image"
+            src={photo.imageSrc}
+            height={100}
+            width={100}
+            className="w-full object-cover aspect-square"
+        />
+    </div>
+}
+
+5.in order to display image separatly, we can create a separte Frame Component
+
+src/app/components/frame.jsx
+import Image from "next/image"
+
+export default function Frame({ photo }) {
+    return <div>
+        <Image alt="Your Image"
+            src={photo.imageSrc}
+            height={100}
+            width={100}
+            className="w-full object-cover aspect-square"
+        />
+        <div>
+            <h1 className="text-bold">{photo.name}</h1>
+            <h2>Taken by{photo.username}</h2>
+        </div>
+    </div>
+}
+
+6.Replace with FrameComponent
+
+src/app/photos/[id]/page.js
+
+import Frame from "@/app/components/frame"
+import photos from "@/app/mock-data/photos"
+
+export default async function PhotoDetailsPage({ params }) {
+    const id = (await params).id
+    const photo = photos.find(photo => photo.id === id)
+    return <div className="container mx-auto my-10">
+        <Frame photo={photo} />
+    </div>
+}
+
+7.Modal dialog
+
+src/app/components/model.jsx
+
+'use client'
+
+import { useRouter } from "next/navigation"
+import { useCallback, useEffect, useRef } from "react"
+
+export default function Modal({ children }) {
+    const overlay = useRef(null)
+    const wrapper = useRef(null)
+    const router = useRouter()
+
+    const onDismiss = useCallback(() => {
+        router.back()
+    }, [router])
+
+    //close the modal dialog
+    const onClick = useCallback((e) => {
+        if (e.target === overlay.current || wrapper.current) {
+            //if you have clicked on photo
+            if (onDismiss) onDismiss()
+        }
+    })
+    //close the dialog : when you press escape key
+    const onKeyDown = useCallback(e => {
+        if (e.key === 'Escape') {
+            onDismiss()
+        }
+    }, [onDismiss])
+
+    //componentDidUpdate
+    useEffect(() => {
+        document.addEventListener('keydown', onKeyDown)
+        //componentWillUnMount
+        return () => document.removeEventListener('keydown', onKeyDown)
+    }, [onkeydown])
+
+    return <div ref={overlay} onClick={onClick}>
+        {/* Within Modal we render Framework */}
+        {/* This div will display Frame(Photo) */}
+        <div ref={wrapper} style={{ backgroundColor: 'yellow' }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-10/12 md:w-8/12 lg:w-1/2 p-6">
+            {children}
+        </div>
+    </div>
+}
+
+Interceptor : Parral route
+src/app/@modal/(.)photos/[id]/page.js
+import photos from "@/app/mock-data/photo"
+import Frame from "@/app/components/Frame"
+import Modal from "@/app/components/Modal"
+
+export default async function PhotoModal({ params }) {
+    const id = (await params).id 
+    const photo = photos.find((p) => p.id == id)
+    return (
+        <Modal>
+            <Frame photo={photo} />
+        </Modal>
+    )
+}
+
+default.js - fallback page
+src/app/@modal/default.js
+export default function Default(){
+    return null
+}
+
+default.js
+src/app/default/.js
+src/app/@modal/default.js
+export default function Default(){
+    return null
+}
+
+src/app/layout.js
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children, modal }) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* Master Page */}
+        {children}
+        {/* Modal */}
+        {modal}
+      </body>
+    </html>
+  );
+}
+...........................................................................................................................................................
+							SSG -Static Site Generation
+............................................................................................................................................................
+
+if pages uses Static Generation, the page html is generated at  "Build time"
+
+When you run "next build" , during that time, pages are generated.
+
+Generated HTML pages will then be reused on each request. It can be cached by CDN.
+
+In Next.js , you can statically generate pages "with data or without data"
+
+npx create-next-app@latest
+√ What is your project named? ... ssg-app
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+
+Use case: Static Site Generation without data:
+
+By default, Next.js pre render pages using "SSG" without fetching data.
+
+src/app/about/page.js
+export default function About(){
+    return <h1>
+        About
+    </h1>
+}
+
+Note that this page does not require to fetch any external data to be pre-rendered.
+In this case, next generate a single html file as per page during build time.
+
+>npm run build
+
+> ssg-app@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.3
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 4.0s
+ ✓ Linting and checking validity of types
+ ✓ Collecting page data
+ ✓ Generating static pages (6/6)
+ ✓ Collecting build traces
+ ✓ Finalizing page optimization
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    5.63 kB         107 kB
+├ ○ /_not-found                            977 B         102 kB
+└ ○ /about                                 136 B         101 kB
++ First Load JS shared by all             101 kB
+  ├ chunks/4bd1b696-67ee12fb04071d3b.js  53.2 kB
+  ├ chunks/684-c85650275c47a38c.js       45.9 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+○  (Static)  prerendered as static content
+
+>npm start
+
+Use case: Static Generation with Data:
+......................................
+Steps:
+
+1.Create master page
+
+src/app/todos/page.js
+
+SSG APP with data:
+
+=>you have to override the function called "generateStaticParams"
+=>This function is called only during build time.
+
+SSG with dynamic Route:
+
+Steps:
+
+1.create master page
+src/app/todos/page.js
+import Link from "next/link"
+
+export async function fetchTodos() {
+    const url = `https://jsonplaceholder.typicode.com/todos`
+    const response = await fetch(url)
+    return response.json()
+}
+
+
+export default async function TodosMasterPage() {
+    const todos = await fetchTodos()
+    return <div>
+        <h1>Total Todos {todos.length}</h1>
+        <ul>
+            {
+                todos.map(todo=>{
+                    return <li>
+                        <Link href={`/todos/${todo.id}`}>{todo.title}</Link>
+                    </li>
+                })
+            }
+        </ul>
+    </div>
+}
+
+2.create Details Page
+
+
+export async function fetchTodos() {
+    const url = `https://jsonplaceholder.typicode.com/todos`
+    const response = await fetch(url)
+    return response.json()
+}
+export async function fetchTodosByid(id) {
+    const url = `https://jsonplaceholder.typicode.com/todos/${id}`
+    const response = await fetch(url)
+    return response.json()
+}
+
+export default async function TodoDetailPage(props) {
+    const todo = await fetchTodosByid(Number(props.params.id))
+    return <div>
+        <h2>id {todo.id}</h2>
+        <p>title {todo.title}</p>
+        <p>Status {todo.completed ? 'Ok' : 'Not Completed'}</p>
+    </div>
+}
+
+//override funciton which is called during build time in order to prepare the page
+
+export async function generateStaticParams() {
+    const todos = await fetchTodos()
+    //generate html pages for all todos(200 todos), if you have 200 records, 200 html files
+    //to be generated
+
+    return todos.map(todo => {
+        //based on id only the pages are generated, id value must be string always.
+        let id = todo.id.toString()
+        return {
+            //id: id
+            id
+        }
+    });
+}
+npm run build
+
+> ssg-app@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.3
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+ ✓ Linting and checking validity of types
+ ✓ Collecting page data
+ ✓ Generating static pages (207/207)
+ ✓ Collecting build traces
+ ✓ Finalizing page optimization
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    144 B          87.1 kB
+├ ○ /_not-found                          871 B          87.8 kB
+├ ○ /about                               144 B          87.1 kB
+├ ○ /todos                               6.96 kB        93.9 kB
+└ ● /todos/[id]                          144 B          87.1 kB
+    ├ /todos/1
+    ├ /todos/2
+    ├ /todos/3
+    └ [+197 more paths]
++ First Load JS shared by all            87 kB
+  ├ chunks/23-0627c91053ca9399.js        31.5 kB
+  ├ chunks/fd9d1056-2821b0f0cabcd8bd.js  53.6 kB
+  └ other shared chunks (total)          1.86 kB
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses getStaticProps)
+
+
+You can look at project workspace, there is ".next" folder would have been created.
+
+This folder having all production files
+
+.next/server/app/todos
+
+ 1.html
+ 2.html
+ 3.html
+ 200.html
+
+How to test?
+ npm start
+............................................................................................................................................................................................
+								SEO Features
+......................................................................................................................................................................................................................
+
+Next js provides an object and function to supply SEO meta information to the page.
+
+SEO data can be given statically or dynamically.
+
+static meta data is given via code, one time
+
+dynamic meta is given via code during runtime.
+
+npx create-next-app@latest
+√ What is your project named? ... seo-app
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+? What import alias would you like configured? » @/*
+
+SEO meta data is supplied inside layout or page or any component.
+Meta data is supplied via object using "meta data variable"
+meta data must be exported using "export "
+
+syntax
+export const metadata = {
+
+}
+
+
+src/app/layout.js
+
+
+export const metadata = {
+  title: "IBM",
+  description: "IBM is the first Hardware and software company in the world",
+  //add any meta data options
+};
+
+This above code is declarating meta data object having meta data information, this can be part of layout or page .
+
+if it is part of layout, it can be shared across many pages
+if it is part of page, it is only used by that page.
+
+Page specific meta data:
+
+src/app/about/page.js
+export const metadata = {
+    title: "About",
+    //add any meta data options
+};
+
+export default function About() {
+    return <h1>About</h1>
+}
+.........................
+.............................................................................................
+				Master details and meta data
+			
+............................................................................................
+
+Master Page
+
+app/todos/page.js
+import Link from "next/link"
+
+export async function fetchTodos() {
+    const url = `https://jsonplaceholder.typicode.com/todos`
+    const response = await fetch(url)
+    return response.json()
+}
+
+export const metadata = {
+    title: "Todos Master",
+    //add any meta data options
+};
+
+
+export default async function TodosMasterPage() {
+    const todos = await fetchTodos()
+    return <div>
+        <h1>Total Todos {todos.length}</h1>
+        <ul>
+            {
+                todos.map(todo=>{
+                    return <li key={todo.id}>
+                        <Link href={`/todos/${todo.id}`}>{todo.title}</Link>
+                    </li>
+                })
+            }
+        </ul>
+    </div>
+}
+
+
+Dynamic meta data:
+
+app/todos/[id]/page.js
+
+export async function fetchTodos() {
+    const url = `https://jsonplaceholder.typicode.com/todos`
+    const response = await fetch(url)
+    return response.json()
+}
+export async function fetchTodosByid(id) {
+    const url = `https://jsonplaceholder.typicode.com/todos/${id}`
+    const response = await fetch(url)
+    return response.json()
+}
+
+export default async function TodoDetailPage(props) {
+    const todo = await fetchTodosByid(Number(props.params.id))
+    return <div>
+        <h2>id {todo.id}</h2>
+        <p>title {todo.title}</p>
+        <p>Status {todo.completed ? 'Ok' : 'Not Completed'}</p>
+    </div>
+}
+
+//dynamic meta data function
+export async function generateMetadata({ params, searchParam }, parent) {
+    const id = (await params).id
+    const todo = await fetchTodosByid(Number(id))
+
+    //return meta object
+    return {
+        title: `${todo.title} details`
+    }
+
+}
+
+//override funciton which is called during build time in order to prepare the page
+export async function generateStaticParams() {
+    const todos = await fetchTodos()
+    //generate html pages for all todos(200 todos), if you have 200 records, 200 html files
+    //to be generated
+
+    return todos.map(todo => {
+        //based on id only the pages are generated, id value must be string always.
+        let id = todo.id.toString()
+        return {
+            //id: id
+            id
+        }
+    });
+}
+.....................................................................................................................................................................................................................................
+			  								    Streaming
+.....................................................................................................................................................................................................................................
+What is Streaming?
+
+Before understanding what is streaming, we need to understand how SSR works and its limitation.
+
+Streaming is going to improve perofrmance of SRR Limitation.
+
+Steps Involved In SSR:
+.......................................
+
+1.First , all data for a given page is fetched on the server.
+
+2.The server then renders the HTML page 
+
+3.Once the HTML is ready, the server will send HTML,CSS,javascript for the page are sent to the client.
+
+4.NonInteractive user interface is shown using the generated HTML and CSS In browser
+
+5.Finally React, Hydrates,the user interface to make it interactive
+
+
+How to measure web site performance?
+
+In order to measure web performance we have some metrics
+
+1.TTFB
+2.FCP
+3.TTI
+
+TTFB: Time to First Byte:
+.........................................
+
+ Time to First Byte (TTFB) refers to the time between the browser requesting a page and when it receives the first byte of information from the server. This time includes DNS lookup and establishing the connection using a TCP handshake and SSL handshake if the request is made over HTTPS
+
+TTFB is a metric that measures the time between the request for a resource and when the first byte of a response begins to arrive.
+
+FCP :First Contentfull Paint
+.............................................
+The First Contentful Paint (FCP) metric measures the time from when the page starts loading to when any part of the page's content is rendered on the screen
+
+
+TTI:Time to Interactive 
+........................................
+
+  Time to Interactive (TTI) is a non-standardized web performance 'progress' metric defined as the point in time when the last Long Task finished and was followed by 5 seconds of network and main thread inactivity.
+
+These steps are sequentinal and blocking, meaning that the server only render HTML for a page once all the data has been fetched. 
+And on the client side React can only hydrate the UI once the code for all components in the page has been downloaded..
+
+this is traditional process, which degrades the app loading performance
+
+........................................................................................................................................................................................................................................
+		         						 How to improve loading performance
+.....................................................................................................................................................................................................................................
+
+SSR with React and Next.js helps improve the perceived loading performance by showing a non interactive page to the user as soon as possible.
+
+Only HTML can be sent once the data fetching is over.
+
+Streaming allows you to break down the page's HTML into smaller chunks and progressively send those chunks from the server to the client.
+
+This enables part of the page to be displayed sooner, without waiting for all the data to load before any UI can be rendered.
+
+
+How to break down into chunks?
+
+  React mental model is component driven, each component we can treat as chunk.
+
+eg:
+  if a component have priority or that dont rely on data can be sent first (eg layouts),so the react can hydration eariler....
+ if components has less priority, or depends data to be sent later...
+
+How to implement streaming?
+ You have to split code into segments
+
+1.static code which does not depend on data
+2.dynamic code which depends on data.
+
+if you wrap any component with "Suspense Boundary" which is async, can be rendered later.
+
+if the component relays on data fetching, delays with timers, delays with network connections......
+
+............................................................................................................................................................................................
+
+loading.js
+   This is file which has function that function will be suppled fallback UI / loading UI.
+
+>npx create-next-app@latest
+√ What is your project named? ... streaming-loading
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+
+Use case: How to load the entire page async
+
+Steps:
+1.create greeter component
+
+src/app/components/greeter.jsx
+export default function Greeter(){
+     return <h1>Greeter</h1>
+}
+
+2.create dashboard component
+
+import React, { Suspense } from "react"
+import { resolve } from "styled-jsx/css"
+//simulate delay using timer with promise
+
+const Welcome = React.lazy(() => {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, 10000, import('../components/greeter'))
+    })
+})
+const Products = React.lazy(() => {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, 12000, import('../components/products'))
+    })
+})
+export default function Dashboard() {
+    return <div>
+        <h1>Header</h1>
+            <Welcome />
+            <Products/>
+        <h1>Footer</h1>
+    </div>
+}
+
+How to load components /UI in delyed manner
+
+1.we must override suspense component
+2.loading.js is not neccessary.
+
+import React, { Suspense } from "react"
+import { resolve } from "styled-jsx/css"
+
+//simulate delay using timer with promise
+
+const Welcome = React.lazy(() => {
+       return new Promise((resolve, reject) => {
+        setTimeout(resolve, 10000, import('../components/greeter'))
+    })
+})
+const Products = React.lazy(() => {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, 12000, import('../components/products'))
+    })
+})
+export default function Dashboard() {
+    return <div>
+        <h1>Header</h1>
+        <Suspense fallback={<h1>Welcome is Loading...</h1>}>
+            <Welcome />
+        </Suspense>
+        <Suspense fallback={<h1>Products is loading...</h1>}>
+            <Products/>
+        </Suspense>
+        <h1>Footer</h1>
+    </div>
+}
+...........................................................................................................................................................................................
+						Caching,Revalidation,ISR
+...........................................................................................................................................................................................
+What is caching?
+
+ Caching means we dont need to call method more number of times if that method return same value.
+
+Normal function execution
+
+function add(a,b){
+   console.log('add is called')
+   return a + b
+}
+
+add(1,1)
+add(1,1)
+add(1,1)
+add(1,1)
+add(1,1)
+
+here function takes same input, returns same output,but it is called evertime...
+This approach degrades app performance, instead the returned value can be saved in memory or some other place, with same arg , if method called, we dont need to invoke again and again, rather returns result from the memory or some place which is called cache.
+
+Request Memoization:
+
+         if "fetch" function is called in a single tree  with same url for same data no of times
+that means if you call in the layout, again if call in nested layout , again in page , inside page  with in generateMetadata, generateStaticParams... fetch call is cached in the layout itself..
+
+<layout> - fetch('/someapi') - called and cached
+  |
+  <page> - fetch('/someapi') - will take from cache, no api call is made against    server
+   |
+   generateMetadata -fetch('/someapi') -will take from cache, no api call is made against server
+   |
+   generateStaticParams-fetch('/someapi') -will take from cache, no api call is made  against server
+   |
+   -Render completed - cache is reset.
+
+
+  "React extends the fetch API to automatically memoize requests that have the same URL and options.
+ This means you can call a fetch function for the same data in multiple places in a React component tree while only executing it once."
+
+What if i want to use other than fetch api, like axios?
+
+ you can use axios, but i lacks memoziation , that means that api is not cached by default.
+
+ if want caching with axios, "react cache"
+
+ const cachedFn = cache(fn);
+..................................................................................................................................................................................................................
+					ISR
+		Incremental Static Rendering:
+...........................................................................................................................................................................................................................
+
+When an app is built during build time, SSG apps.
+
+ISR = SSG + cache + Revaildation + Request time
+
+Points:
+ you can control cache behaviour through coding only for "data cache".
+ if you control data cache, it automatically controls the "Full Route cache"
+ we cant controll "Request Memoziation", it happens automatically, cache will be  reset at every render pass
+ client side (router cache) will be controlled auotmatically by session or timeout.
+
+npx create-next-app@latest
+√ What is your project named? ... caching-isr
+√ Would you like to use TypeScript? ... No / Yes
+√ Would you like to use ESLint? ... No / Yes
+√ Would you like to use Tailwind CSS? ... No / Yes
+√ Would you like your code inside a `src/` directory? ... No / Yes
+√ Would you like to use App Router? (recommended) ... No / Yes
+√ Would you like to use Turbopack for `next dev`? ... No / Yes
+√ Would you like to customize the import alias (`@/*` by default)? ... No / Yes
+√ What import alias would you like configured? ... @/*
+
+
+In order to test how caching works , we are going to use api which returns current date and time , so that we can easily understand how caching is working..
+
+In Next.js 15 , fetch witout any configuration, caching is disabled, caching is not enabled without any parameter.
+
+fetch('api/something') - here caching is disabled, meaning that you get fresh data always
+fetch('/api/something',{ cache: 'force-cache' }) - here caching is enabled.
+
+....................................................................................................................................................
+
+Use case:By default the caching is not enabled 
+
+eg:
+
+src/app/timecache/[city]/page.js
+
+export async function getTime() {
+    const url = 'https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata'
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
+}
+export default async function TimeCachePage() {
+    const data = await getTime()
+    return <>
+        <h1>Time Now: {new Date(data.dateTime).toLocaleTimeString()}</h1>
+    </>
+}
+After running:
+http://localhost:3000/timecache/Kolkata
+
+You can see the result is time updated whenever you refresh the page.
+You are getting live data, meaning that "caching is disabled by default".
+
+How to enable cache?
+export async function getTime() {
+    const url = 'https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata'
+    const response = await fetch(url, { cache: 'force-cache' })
+    const data = await response.json()
+    return data
+}
+export default async function TimeCachePage() {
+    const data = await getTime()
+    return <>
+        <h1 className="font-bold">Time Now: {new Date(data.dateTime).toLocaleTimeString()}</h1>
+    </>
+}
+.............................................................................................................................................................................................................
+								Revalidation: How to clear the cache
+...................................................................................................................................................................................................................
+
+Time based revalidation:
+..........................................
+//With cache and revalidation with timer
+export async function getTime() {
+    const url = 'https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata'
+    const response = await fetch(url, { cache: 'force-cache', next: { revalidate: 2 } })
+    const data = await response.json()
+    return data
+}
+
+export default async function TimeCachePage() {
+    const data = await getTime()
+    return <>
+        <h1 className="font-bold">Time Now: {new Date(data.dateTime).toLocaleTimeString()}</h1>
+    </>
+}
+.......................................................................................................................................................................................................................
+									OnDemand Revalidation
+.......................................................................................................................................................................................................................
+
+OnDemand revalidation is done via api call, when you call api, validation triggers
+
+Steps:
+1.You have to write rest api, which revalidates cache.
+ 1..1. You can use path 
+ 1..2. You can use tag
+ 1..3  You can use both
+
+
+Path Based:
+ Based on url we can clear cache
+
+/api/products - clear the cache related to products route
+
+src/app/api/revalidate/route.js
+import { revalidatePath } from "next/cache"
+import { NextResponse } from "next/server"
+
+export async function GET(request, { params }) {
+    //get the path of the revalidation
+    const path = request.nextUrl.searchParams.get('path') || '/timecache/Kolkata'
+    //call revalidate api
+    revalidatePath(path)
+    return NextResponse.json({ revalidate: true, now: new Date(), cache: 'no-store' })
+
+}
+
+src/app/timecache\[city]\page.js
+//on demand revalidation with path
+export async function getTime() {
+    const url = 'https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata'
+    const response = await fetch(url, { cache: 'force-cache' })
+    const data = await response.json()
+    return data
+}
+
+export default async function TimeCachePage() {
+    const data = await getTime()
+    return <>
+        <h1 className="font-bold">Time Now: {new Date(data.dateTime).toLocaleTimeString()}</h1>
+    </>
+}
+
+Tag Based:
+.....................
+
+src/app/api/revalidate/route.js
+
+export async function GET(request, { params }) {
+    //get the tag of the revalidation
+    const tag = request.nextUrl.searchParams.get('timerTag') || 'timerTag'
+    //call revalidate api
+    revalidateTag(tag)
+    return NextResponse.json({ revalidate: true, now: new Date(), cache: 'no-store' })
+
+}
+//on demand revalidation with tag
+export async function getTime() {
+    const url = 'https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata'
+    const response = await fetch(url, {
+        cache: 'force-cache', next: {
+            tags: ['timerTag']
+        }
+    })
+    const data = await response.json()
+    return data
+}
+
+export default async function TimeCachePage() {
+    const data = await getTime()
+    return <>
+        <h1 className="font-bold">Time Now: {new Date(data.dateTime).toLocaleTimeString()}</h1>
+    </>
+}
+.............................................................................................................................................................................................................
+									ISR
+						SSG + Caching + Revalidation = ISR
+				   		     ISR- Incremental Static Rendering
+............................................................................................................................................................................................................
+
+ISR  =SSG +Caching + Revalidation.
+
+SSG:
+  -Building pages during build time.
+  -Incase if page uses data that means fetching data from apis,that data only used    during build phase
+  -page is built and cache it 
+  
+Revalidation:
+  -When we want fresh data for the page
+  -during revalidation, cache is cleared so that the page also need to be    rerendered..
+
+"Incrementatal static rendering is nothing but create pages during build time and cache it, if any data change for the particular page, re render that page, after clearing the cache either by using time based or on demand or both"
+
+ISR = SSR + Staic Renderning + Dynamic Rendering + SSG +request time
+
+
+How to implement ISR?
+
+1.Enable Cache
+2.Select Revalidation pattern
+3.override generateStaticParams method where you have to generate page, after build time, the page is cached.
+4.revalidate the pre build page, using revalidation pattern so that the page is rebuilt.
+
+During SSG, the pages are cached by default.
+
+Once the app is gone to the production, after that if you want to rebuild page you can apply revalidation process.
+
+ISR = SSG + Revalidation.
+
+Eg:
+export async function getTime() {
+    const url = 'https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata'
+    const response = await fetch(url, {
+        cache: 'force-cache', next: {
+            tags: ['timerTag']
+        }
+    })
+    const data = await response.json()
+    return data
+}
+
+export default async function TimeCachePage() {
+    const data = await getTime()
+    return <>
+        <h1 className="font-bold">Time Now: {new Date(data.dateTime).toLocaleTimeString()}</h1>
+    </>
+}
+export async function generateStaticParams() {
+    return [{
+        city: 'Kolkata'
+    }]
+}
+
+Testing:
+pm run build
+
+> caching-isr@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.10
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+ ✓ Linting and checking validity of types
+ ✓ Collecting page data
+ ✓ Generating static pages (7/7)
+ ✓ Collecting build traces
+ ✓ Finalizing page optimization
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    5.25 kB        92.3 kB
+├ ○ /_not-found                          871 B          87.9 kB
+├ ƒ /api/revalidate                      0 B                0 B
+└ ● /timecache/[city]                    137 B          87.2 kB
+    └ /timecache/Kolkata
++ First Load JS shared by all            87.1 kB
+  ├ chunks/23-8d0b25cd7d597713.js        31.6 kB
+  ├ chunks/fd9d1056-2821b0f0cabcd8bd.js  53.6 kB
+  └ other shared chunks (total)          1.86 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+
+
+nextjs\caching-isr>npm start
+
+> caching-isr@0.1.0 start
+> next start
+
+  ▲ Next.js 14.2.10
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 418ms
+..............................................................................................................................................................................................................
+
+
+
+
